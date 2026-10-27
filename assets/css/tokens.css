@@ -1,0 +1,130 @@
+/**
+ * ifthenpay × LearnDash design tokens.
+ *
+ * Every value points at a LearnDash --ld-* token (or is derived from LearnDash/WP
+ * markup where LearnDash has none). The block sits on .iftp-ld-scope, which every
+ * root element carries (dialogs too, since jQuery UI moves them to <body>), and on
+ * LearnDash's own settings wrapper for our section, which can't take our class.
+ */
+/* stylelint-disable selector-class-pattern -- LearnDash's own wrapper classes. */
+.iftp-ld-scope,
+.sfwd_options.settings_ifthenpay {
+	/* Accent: LearnDash brand blue replaces ifthenpay navy */
+	--iftp-ld-brand: var(--ld-color-brand-primary);              /* #235af3 — 5.49:1 on #fff */
+	--iftp-ld-brand-hover: var(--ld-color-system-dark);            /* #0e2a90 */
+	--iftp-ld-brand-active: var(--ld-color-primitives-blue-800);   /* #0e2a90 */
+	--iftp-ld-brand-tint: var(--ld-color-primitives-blue-100);     /* #f3f8ff */
+	--iftp-ld-brand-tint-strong: var(--ld-color-primitives-blue-150); /* #d6defb */
+
+	/* Ramp + band: only the logo-mark loader uses these now (the masthead is gone) */
+	--iftp-ld-ramp-1: var(--ld-color-primitives-blue-800);   /* #0e2a90 */
+	--iftp-ld-ramp-2: var(--ld-color-primitives-blue-500);   /* #235af3 */
+	--iftp-ld-ramp-3: var(--ld-color-brand-tertiary);        /* #479bf8 */
+	--iftp-ld-ramp-4: var(--ld-color-primitives-blue-200);   /* #98acf5 */
+	--iftp-ld-ramp-5: var(--ld-color-primitives-blue-175);   /* #b6c7f7 */
+	--iftp-ld-ramp-6: var(--ld-color-primitives-blue-150);   /* #d6defb */
+	--iftp-ld-ramp: linear-gradient(90deg, var(--iftp-ld-ramp-1) 0%, var(--iftp-ld-ramp-2) 20%, var(--iftp-ld-ramp-3) 40%, var(--iftp-ld-ramp-4) 60%, var(--iftp-ld-ramp-5) 80%, var(--iftp-ld-ramp-6) 100%);
+	--iftp-ld-band: linear-gradient(115deg, var(--ld-color-primitives-blue-800) 0%, var(--ld-color-primitives-blue-500) 55%, var(--ld-color-brand-tertiary) 100%);
+
+	/* Text */
+	--iftp-ld-text-strong: var(--ld-color-system-text-dark);           /* #0e0e2c */
+	--iftp-ld-text: var(--ld-color-semantic-text-body);                /* #4a4a68 — 8.5 white / 7.92 stripe */
+	--iftp-ld-text-muted: var(--ld-color-semantic-text-body-subtle);   /* #73738c — 4.61 on #fff ONLY (4.29 on stripe → fails) */
+	--iftp-ld-text-disabled: var(--ld-color-primitives-grey-200);      /* #a7adc2 — non-text only */
+	--iftp-ld-text-inverse: var(--ld-color-system-white);
+	--iftp-ld-text-inverse-muted: var(--ld-color-primitives-blue-150);  /* #d6defb */
+
+	/* Surfaces */
+	--iftp-ld-surface: var(--ld-color-system-white);
+	--iftp-ld-surface-sunken: var(--ld-color-system-light-2);          /* #f7f9fc */
+	--iftp-ld-surface-stripe: #f6f7f7;                                 /* derived: WP .striped, which LD's Orders list inherits */
+	--iftp-ld-surface-hover: var(--ld-color-system-light-2);           /* #f7f9fc */
+	--iftp-ld-surface-selected: var(--ld-color-system-light-1);        /* #f3f8ff */
+	--iftp-ld-surface-disabled: var(--ld-color-semantic-field-background-disabled); /* #f7f9fc */
+	--iftp-ld-overlay: rgb(0 0 0 / 70%);                               /* derived: WP jQuery UI overlay (#000, opacity .7) */
+
+	/* Borders */
+	--iftp-ld-border: var(--ld-color-semantic-general-border);         /* #dce1e8 */
+	--iftp-ld-border-subtle: #edf0f5;                                  /* derived: LD .ld-order-items__price-status bg */
+	--iftp-ld-border-control: #8c8f94;                                 /* derived: WP core input border, 3.24:1 */
+	--iftp-ld-border-control-hover: var(--ld-color-semantic-text-body); /* #4a4a68 */
+
+	/* Danger */
+	--iftp-ld-danger: #b32d2e;                                         /* derived: LD .ld-order-subscription__details-action--cancel (6.3:1) */
+	--iftp-ld-danger-hover: var(--ld-color-primitives-red-800);        /* #8f0000 */
+	--iftp-ld-danger-bg: var(--ld-color-semantic-error-light);         /* #faeeee */
+	--iftp-ld-danger-border: var(--ld-color-primitives-red-200);       /* #f6cfcf */
+
+	/* Toast */
+	--iftp-ld-toast-bg: var(--ld-color-system-dark);                   /* #0e2a90 — white 11.98:1 */
+	--iftp-ld-toast-error-bg: var(--ld-color-primitives-red-800);      /* #8f0000 — white 9.69:1 */
+
+	/* Focus */
+	--iftp-ld-focus: var(--ld-color-brand-primary);
+	--iftp-ld-focus-inverse: var(--ld-color-system-white);
+	--iftp-ld-focus-width: 2px;
+	--iftp-ld-focus-offset: 2px;
+
+	/* Spacing: LD fixed spacers */
+	--iftp-ld-space-1: var(--ld-spacer-fixed-0);  /* 4px */
+	--iftp-ld-space-2: var(--ld-spacer-fixed-1);  /* 8px */
+	--iftp-ld-space-3: var(--ld-spacer-fixed-2);  /* 12px */
+	--iftp-ld-space-4: var(--ld-spacer-fixed-3);  /* 16px */
+	--iftp-ld-space-5: var(--ld-spacer-fixed-4);  /* 20px */
+	--iftp-ld-space-6: var(--ld-spacer-fixed-5);  /* 24px */
+	--iftp-ld-space-7: calc(var(--ld-spacer-fixed-5) + var(--ld-spacer-fixed-0)); /* 28px — LD has no 28 */
+	--iftp-ld-space-8: var(--ld-spacer-fixed-6);  /* 32px */
+	--iftp-ld-space-10: var(--ld-spacer-fixed-8); /* 40px */
+	--iftp-ld-space-14: var(--ld-spacer-fixed-10); /* 56px */
+
+	/* Radius */
+	--iftp-ld-radius-sm: var(--ld-border-radius-small);         /* 4px */
+	--iftp-ld-radius-md: 6px;                                   /* derived: LD copy-text tooltip (.375rem) */
+	--iftp-ld-radius-lg: var(--ld-border-radius);               /* 8px */
+	--iftp-ld-radius-xl: var(--ld-border-radius);               /* 8px — LD has no 12px; cards are 8 like .ld-dashboard-widget */
+	--iftp-ld-radius-pill: var(--ld-button-border-radius-rounded); /* 100px */
+
+	/* Shadows */
+	--iftp-ld-shadow-1: 0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px -1px rgb(0 0 0 / 10%); /* derived: .ld-dashboard-widget */
+	--iftp-ld-shadow-2: 0 0 0 1px #e6e6e6, 0 3px 13px rgb(0 0 0 / 8%);                 /* derived: LD's flatpickr popover */
+	--iftp-ld-shadow-3: 0 3px 6px rgb(0 0 0 / 30%);                                    /* derived: WP .ui-dialog */
+
+	/* Type — font-family is inherited (see §0.4) */
+	--iftp-ld-font-mono: ui-monospace, sfmono-regular, menlo, consolas, "Liberation Mono", monospace;
+	--iftp-ld-fs-xs: 0.6875rem;                                  /* 11px — derived: .ld-order-items__price-status */
+	--iftp-ld-fs-sm: var(--ld-typography-desktop-caption-size);  /* .75rem / 12px */
+	--iftp-ld-fs-base: 0.8125rem;                                /* 13px — derived: .ld-order-list__cell-container */
+	--iftp-ld-fs-md: var(--ld-typography-desktop-body-small-size); /* .875rem / 14px */
+	--iftp-ld-fs-lg: var(--ld-typography-desktop-h6-size);       /* 1.125rem / 18px */
+	--iftp-ld-fs-xl: var(--ld-typography-desktop-h5-size);       /* 1.5rem / 24px */
+	--iftp-ld-lh-tight: 1.25;
+	--iftp-ld-lh-base: 1.5;
+	--iftp-ld-fw-regular: var(--ld-typography-font-weight-regular); /* 400 */
+	--iftp-ld-fw-medium: var(--ld-typography-font-weight-medium);   /* 500 */
+	--iftp-ld-fw-semibold: 600;                                     /* derived: .ld-dashboard-widget-* values */
+	--iftp-ld-fw-bold: var(--ld-typography-font-weight-bold);       /* 700 */
+	--iftp-ld-tracking-caps: 0.03em;                                /* LD pre-title spacing (3%) */
+
+	/* Controls: WP core heights, which LD's admin uses everywhere */
+	--iftp-ld-control-h: 30px;
+	--iftp-ld-control-h-sm: 24px;
+
+	/* Motion (kept from Forminator; LD's switch uses .1–.2s) */
+	--iftp-ld-dur-fast: 120ms;
+	--iftp-ld-dur-base: 160ms;
+	--iftp-ld-dur-slow: 200ms;
+	--iftp-ld-ease: cubic-bezier(0.2, 0, 0, 1);
+	--iftp-ld-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
+	/* Z-layers. Dialogs use jQuery UI's own: overlay 100101, dialog 100102 */
+	--iftp-ld-z-popover: 50;
+	--iftp-ld-z-bulk: 9990;
+	--iftp-ld-z-scroll: 99999;
+	--iftp-ld-z-toast: 100110; /* above an open dialog: progress toasts must show while one is up */
+
+	/* Status family (§1b) */
+	--iftp-ld-status-text: #2c3338;
+	--iftp-ld-paid-bg: #d2efd8;    --iftp-ld-paid-border: #b3e5bd;    --iftp-ld-paid-icon: #00a32a;
+	--iftp-ld-pending-bg: #f9eec8; --iftp-ld-pending-border: #f4e29f; --iftp-ld-pending-icon: #d0a010;
+	--iftp-ld-muted-bg: #f2f2f2;   --iftp-ld-muted-border: #e6e6e6;   --iftp-ld-muted-icon: #74767c; /* failed · cancelled · expired */
+}

@@ -1,0 +1,256 @@
+/**
+ * LearnDash › Settings › Payments › ifthenpay.
+ *
+ * Built on LearnDash's own settings rows, switches, settings table and star icons;
+ * these rules only add what LearnDash has no class for. Every selector is scoped to
+ * LearnDash's section wrapper or our dialog class, so nothing needs !important.
+ */
+/* stylelint-disable selector-class-pattern -- LearnDash's own wrapper classes. */
+
+/* Connect / Disconnect: LearnDash's PayPal button metrics in ifthenpay's colour */
+.sfwd_options.settings_ifthenpay .iftp-ld-connect__button {
+	align-items: center;
+	background: #00609c;              /* ifthenpay brand, white text 6.66:1 */
+	border: 1px solid transparent;    /* gives it an edge in forced colours */
+	border-radius: 5px;               /* = .ld-paypal-checkout__button */
+	box-shadow: none;
+	color: #fff;
+	cursor: pointer;
+	display: flex;
+	font-size: 16px;
+	gap: 10px;
+	justify-content: center;
+	letter-spacing: 0.6px;
+	min-height: 40px;
+	padding: 6px 24px;
+	text-decoration: none;
+	transition: background-color 0.2s ease;
+	width: 250px;                     /* = --connect */
+}
+
+.sfwd_options.settings_ifthenpay .iftp-ld-connect__button.button-primary,
+.sfwd_options.settings_ifthenpay .iftp-ld-connect__button--disconnect {
+	display: inline-flex;
+	min-height: 32px;
+	padding: 3px 12px;                /* = PayPal --disconnect */
+	width: auto;
+}
+
+.sfwd_options.settings_ifthenpay .iftp-ld-connect__button:hover,
+.sfwd_options.settings_ifthenpay .iftp-ld-connect__button.button-primary:hover,
+.sfwd_options.settings_ifthenpay .iftp-ld-connect__button:active {
+	background: #004f80;              /* 8.64:1 */
+	color: #fff;
+}
+
+.sfwd_options.settings_ifthenpay .iftp-ld-connect__button:focus-visible {
+	outline: 2px solid #004f80;
+	outline-offset: 2px;
+	box-shadow: none;
+}
+
+.sfwd_options.settings_ifthenpay .iftp-ld-connect__logo svg {
+	display: block;
+	height: 18px;
+	width: auto;
+}
+
+/* Methods table */
+/* Control group: shrink-to-fit, centred, divider after Enabled */
+.sfwd_options.settings_ifthenpay .iftp-ld-methods .iftp-ld-methods__col--enabled,
+.sfwd_options.settings_ifthenpay .iftp-ld-methods .iftp-ld-methods__col--default,
+.sfwd_options.settings_ifthenpay .iftp-ld-methods .iftp-ld-methods__cell--enabled,
+.sfwd_options.settings_ifthenpay .iftp-ld-methods .iftp-ld-methods__cell--default {
+	text-align: center;
+	vertical-align: middle;
+	white-space: nowrap;
+	width: 1%;
+}
+
+.sfwd_options.settings_ifthenpay .iftp-ld-methods .iftp-ld-methods__col--enabled,
+.sfwd_options.settings_ifthenpay .iftp-ld-methods .iftp-ld-methods__cell--enabled {
+	border-right: 1px solid var(--iftp-ld-border); /* #dce1e8 */
+}
+
+.sfwd_options.settings_ifthenpay .iftp-ld-methods .ld-switch {
+	display: inline-block;
+	margin: 0; /* LD's .ld-switch has margin-right:16px for label rows */
+	vertical-align: middle;
+}
+
+/* Method: fixed logo slot so every label starts at one x */
+.sfwd_options.settings_ifthenpay .iftp-ld-methods__method {
+	align-items: center;
+	display: flex;
+	gap: var(--iftp-ld-space-4); /* 16px */
+}
+
+.sfwd_options.settings_ifthenpay .iftp-ld-methods__logo-slot {
+	align-items: center;
+	display: inline-flex;
+	flex-shrink: 0;
+	justify-content: center;
+	width: 66px;
+}
+
+.sfwd_options.settings_ifthenpay .iftp-ld-methods__logo {
+	height: auto;
+	max-height: 25px;
+	max-width: 66px; /* the combined card mark hits this first */
+	width: auto;
+}
+
+/* Account pill: LD's .ld-order-items__price-status shape, fixed height */
+.sfwd_options.settings_ifthenpay .iftp-ld-methods__account {
+	background: var(--iftp-ld-border-subtle);   /* #edf0f5 */
+	border-radius: 0.3125rem;
+	color: var(--iftp-ld-text-strong);          /* 16.5:1 */
+	display: inline-block;
+	font-size: var(--iftp-ld-fs-sm);
+	font-variant-numeric: tabular-nums;
+	height: 24px;
+	line-height: 24px;
+	padding: 0 var(--iftp-ld-space-2);
+	vertical-align: middle;
+	white-space: nowrap;
+}
+
+/* Star: LD's own icons; filled = brand-primary, like LD's selected radio (.ld-svgicon__radio-select) */
+.sfwd_options.settings_ifthenpay .iftp-ld-methods__star {
+	color: var(--iftp-ld-text-muted);           /* outline #73738c: 4.61 white / 4.29 stripe ≥ 3:1 */
+	cursor: pointer;
+	display: inline-flex;
+	line-height: 0;
+}
+
+.sfwd_options.settings_ifthenpay .iftp-ld-methods__star .ld-svgicon {
+	height: 24px;
+	width: 24px;
+}
+
+.sfwd_options.settings_ifthenpay .iftp-ld-methods__star-on { display: none; color: var(--iftp-ld-brand); }
+.sfwd_options.settings_ifthenpay .iftp-ld-methods__default:checked + .iftp-ld-methods__star .iftp-ld-methods__star-on { display: block; }
+.sfwd_options.settings_ifthenpay .iftp-ld-methods__default:checked + .iftp-ld-methods__star .iftp-ld-methods__star-off { display: none; }
+.sfwd_options.settings_ifthenpay .iftp-ld-methods__star:hover { color: var(--iftp-ld-brand); }
+
+.sfwd_options.settings_ifthenpay .iftp-ld-methods__default:focus-visible + .iftp-ld-methods__star {
+	border-radius: var(--iftp-ld-radius-sm);
+	outline: 2px solid var(--iftp-ld-focus);
+	outline-offset: 2px;
+}
+
+/* Hidden, not removed, so the column width never jumps */
+.sfwd_options.settings_ifthenpay .iftp-ld-methods__star--hidden { visibility: hidden; }
+
+/* Wink: JS adds then removes --wink so it replays on repeat clicks */
+@keyframes iftp-ld-star-wink {
+	0% { transform: scale(1) rotate(0); }
+	35% { transform: scale(1.35) rotate(-15deg); }
+	65% { transform: scale(0.9) rotate(10deg); }
+	100% { transform: scale(1) rotate(0); }
+}
+
+.sfwd_options.settings_ifthenpay .iftp-ld-methods__star--wink .ld-svgicon { animation: iftp-ld-star-wink 0.4s ease-in-out; }
+
+@media (prefers-reduced-motion: reduce) {
+	.sfwd_options.settings_ifthenpay .iftp-ld-methods__star--wink .ld-svgicon { animation: none; }
+}
+
+/* Status */
+.sfwd_options.settings_ifthenpay .iftp-ld-methods__status {
+	align-items: center;
+	color: var(--iftp-ld-text-strong);
+	display: inline-flex;
+	gap: var(--iftp-ld-space-1);
+	white-space: nowrap;
+}
+
+.sfwd_options.settings_ifthenpay .iftp-ld-methods__status--active .dashicons { color: #2f8351; } /* validation-success, 4.68 */
+.sfwd_options.settings_ifthenpay .iftp-ld-methods__status--inactive { color: var(--iftp-ld-text); font-style: italic; }
+
+.sfwd_options.settings_ifthenpay .iftp-ld-methods__activation {
+	align-items: center;
+	display: flex;
+	flex-wrap: nowrap;
+	gap: var(--iftp-ld-space-2);
+}
+
+/* Dim the unprovisioned row's *content*, never the Request activation button */
+.sfwd_options.settings_ifthenpay .iftp-ld-methods__row--unprovisioned .iftp-ld-methods__method,
+.sfwd_options.settings_ifthenpay .iftp-ld-methods__row--unprovisioned .iftp-ld-methods__status--inactive {
+	opacity: 0.5;
+}
+
+/* Dialogs */
+.iftp-ld-dialog .iftp-ld-dialog__label { display: block; font-weight: var(--iftp-ld-fw-semibold); margin: 0 0 var(--iftp-ld-space-1); }
+.iftp-ld-dialog .iftp-ld-dialog__input { width: 100%; }
+.iftp-ld-dialog .iftp-ld-dialog__input[aria-invalid="true"] { border-color: #d63638; box-shadow: 0 0 0 1px #d63638; }
+.iftp-ld-dialog .iftp-ld-dialog__error { align-items: flex-start; color: #b32d2e; display: flex; gap: var(--iftp-ld-space-1); margin: var(--iftp-ld-space-2) 0 0; }
+.iftp-ld-dialog .iftp-ld-dialog__error[hidden] { display: none; }
+.iftp-ld-dialog .ui-dialog-buttonpane .spinner { float: none; margin: 4px 8px 0 0; } /* busy spinner sits left of the buttons */
+
+/* The ifthenpay mark, white on the brand button */
+.sfwd_options.settings_ifthenpay .iftp-ld-connect__logo img {
+	display: block;
+	filter: brightness(0) invert(1);
+	height: 18px;
+	width: auto;
+}
+
+/* Connection status row */
+.sfwd_options.settings_ifthenpay .iftp-ld-connection {
+	align-items: center;
+	display: inline-flex;
+	gap: var(--iftp-ld-space-1);
+}
+
+.sfwd_options.settings_ifthenpay .iftp-ld-connection .dashicons {
+	color: #2f8351; /* --ld-color-system-validation-success */
+}
+
+/* Gateway Key switch: rows fade while the new key's methods load */
+.sfwd_options.settings_ifthenpay .iftp-ld-methods--busy tbody {
+	opacity: 0.5;
+	transition: opacity var(--iftp-ld-dur-base) var(--iftp-ld-ease);
+}
+
+.sfwd_options.settings_ifthenpay .iftp-ld-gateway-spinner {
+	float: none;
+	margin: 0 0 0 8px;
+	vertical-align: middle;
+}
+
+.sfwd_options.settings_ifthenpay .iftp-ld-methods__row--message td {
+	color: var(--iftp-ld-text);
+	padding: var(--iftp-ld-space-4);
+}
+
+/* Callback status under the Callback URL */
+.sfwd_options.settings_ifthenpay .iftp-ld-callback {
+	align-items: center;
+	display: inline-flex;
+	font-size: 12px;
+	gap: 4px;
+	margin-top: 4px;
+}
+
+.sfwd_options.settings_ifthenpay .iftp-ld-callback--ok .dashicons {
+	color: #2f8351;
+}
+
+.sfwd_options.settings_ifthenpay .iftp-ld-callback--pending .dashicons {
+	color: #d63638;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.sfwd_options.settings_ifthenpay .iftp-ld-connect__button,
+	.sfwd_options.settings_ifthenpay .iftp-ld-methods--busy tbody {
+		transition: none;
+	}
+}
+
+@media (forced-colors: active) {
+	.sfwd_options.settings_ifthenpay .iftp-ld-connect__logo img {
+		filter: none;
+	}
+}

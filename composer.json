@@ -1,0 +1,21 @@
+{
+	"name": "ifthenpay/ifthenpay-payments-for-learndash",
+	"description": "ifthenpay Pay by Link for LearnDash LMS: Multibanco, MB WAY, cards, Apple Pay, Google Pay and more on ifthenpay's hosted page.",
+	"type": "wordpress-plugin",
+	"license": "GPL-2.0-or-later",
+	"require": {
+		"php": ">=7.4"
+	},
+	"autoload": {
+		"psr-4": {
+			"Ifthenpay\\LearnDash\\": "src/"
+		}
+	},
+	"config": {
+		"optimize-autoloader": true,
+		"sort-packages": true,
+		"platform": {
+			"php": "7.4"
+		}
+	}
+}

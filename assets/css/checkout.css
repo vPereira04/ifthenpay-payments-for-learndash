@@ -1,0 +1,92 @@
+/**
+ * ifthenpay on LearnDash's course page and registration page.
+ *
+ * LearnDash's own buttons, alerts and loader do the work; these rules only lay
+ * out the bare method logos and the status block's spinner. No colours are set
+ * on LearnDash's classes, so the site's LearnDash colour settings still apply.
+ */
+
+/* Logo strip: bare logos, no chip (LearnDash's ld-svglogo handles grey/colour on the registration page) */
+.iftp-ld-logos {
+	align-items: center;
+	display: inline-flex;
+	flex-wrap: wrap;
+	gap: var(--ld-spacer-fixed-1, 8px);
+	line-height: 0;
+}
+
+.iftp-ld-logos .iftp-ld-logos__logo {
+	display: block;
+	height: 20px;
+	max-width: 60px;
+	object-fit: contain;
+	width: auto;
+}
+
+.iftp-ld-logos .iftp-ld-logos__more {
+	font-size: 12px;
+	font-weight: 700;
+	line-height: 20px;
+}
+
+/* Under LearnDash's full-width course button */
+.iftp-ld-logos.iftp-ld-logos--button {
+	justify-content: center;
+	margin-top: 8px;
+	max-width: 385px;
+	width: 100%;
+}
+
+.iftp-ld-logos.iftp-ld-logos--button .iftp-ld-logos__logo {
+	height: 18px;
+}
+
+.ld-enrollment__join .iftp-ld-logos.iftp-ld-logos--button {
+	justify-content: flex-start;
+}
+
+/* Inside LearnDash's gateway dropdown, when several gateways are on */
+.checkout-dropdown-button .iftp-ld-logos.iftp-ld-logos--button {
+	justify-content: flex-start;
+	margin: 4px 0 0;
+}
+
+.checkout-dropdown-button .iftp-ld-logos.iftp-ld-logos--button .iftp-ld-logos__logo {
+	height: 16px;
+}
+
+/* Setup error under the button (server text; may hold a "Continue payment" link) */
+.learndash-payment-gateway-form-ifthenpay .iftp-ld-checkout__error {
+	font-size: 14px;
+	margin: 8px 0 0;
+	max-width: 385px;
+}
+
+.learndash-payment-gateway-form-ifthenpay .iftp-ld-checkout__error[hidden] {
+	display: none;
+}
+
+/* Status block */
+.iftp-ld-status {
+	margin: 0 0 var(--ld-spacer-3, 16px);
+}
+
+.iftp-ld-status .iftp-ld-status__checking {
+	min-height: 85px; /* = classic .ld-alert, so nothing jumps */
+	position: relative;
+}
+
+.learndash-wrapper--modern .iftp-ld-status .iftp-ld-status__checking,
+.ld-layout__header .iftp-ld-status .iftp-ld-status__checking {
+	min-height: 64px;
+}
+
+.iftp-ld-status .iftp-ld-status__checking.ld-loading::after {
+	background: transparent; /* no white scrim on an empty box */
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.iftp-ld-status .iftp-ld-status__checking.ld-loading::before {
+		animation-duration: 3s; /* slowed, not stopped: it's the only sign of progress */
+	}
+}

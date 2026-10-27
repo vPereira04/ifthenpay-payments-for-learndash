@@ -1,0 +1,1994 @@
+/**
+ * Payments (admin.php?page=iftp-ld-payments) and its entry page.
+ *
+ * LearnDash draws the header, tabs, status pills, order-details tables and copy buttons;
+ * these rules add only what LearnDash has no class for, from the --iftp-ld-* tokens.
+ * Every rule is scoped to #iftp-ld-entries, #iftp-ld-entry or .iftp-ld-dialog, so nothing
+ * needs !important.
+ */
+/* stylelint-disable selector-class-pattern -- BEM blocks plus LearnDash's and WP's own classes. */
+
+/* LearnDash's order status family: our "expired", same metrics and specificity as theirs. */
+.post-type-sfwd-transactions__transaction-status--expired {
+	background: #f2f2f2;
+	border-color: #e6e6e6;
+}
+
+.post-type-sfwd-transactions__transaction-status--expired::before {
+	color: #74767c;
+	content: "\f18c"; /* dashicons-hourglass */
+}
+
+/* ------------------------------------------------------------------ shell */
+
+#iftp-ld-entries,
+#iftp-ld-entry {
+	color: var(--iftp-ld-text);
+}
+
+#iftp-ld-entries .iftp-ld-entries__intro {
+	margin: var(--iftp-ld-space-4) 0 0;
+	max-width: 72ch;
+	font-size: var(--iftp-ld-fs-base);
+	color: var(--iftp-ld-text);
+}
+
+#iftp-ld-entries .iftp-ld-onboarding {
+	margin-top: var(--iftp-ld-space-4);
+}
+
+#iftp-ld-entries .iftp-ld-onboarding .ld-notice {
+	margin: 0;
+}
+
+#iftp-ld-entries .iftp-ld-card {
+	position: relative;
+	margin-top: var(--iftp-ld-space-4);
+	background: var(--iftp-ld-surface);
+	border-radius: var(--iftp-ld-radius-xl);
+	box-shadow: var(--iftp-ld-shadow-1);
+}
+
+#iftp-ld-entries :focus-visible {
+	outline: var(--iftp-ld-focus-width) solid var(--iftp-ld-focus);
+	outline-offset: var(--iftp-ld-focus-offset);
+}
+
+/* ------------------------------------------------------------------ summary cards */
+
+#iftp-ld-entries .iftp-ld-summary {
+	margin-top: var(--iftp-ld-space-4);
+	background: var(--iftp-ld-surface);
+	border-radius: var(--iftp-ld-radius-xl);
+	box-shadow: var(--iftp-ld-shadow-1);
+}
+
+#iftp-ld-entries .iftp-ld-summary__list {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: 1px;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	list-style: none;
+	background: var(--iftp-ld-border-subtle);
+	border-radius: var(--iftp-ld-radius-xl);
+}
+
+#iftp-ld-entries .iftp-ld-summary__item {
+	margin: 0;
+}
+
+#iftp-ld-entries .iftp-ld-summary__link {
+	display: grid;
+	grid-template-areas: "label icon" "amount icon" "count icon";
+	grid-template-columns: 1fr auto;
+	gap: var(--iftp-ld-space-1) var(--iftp-ld-space-2);
+	height: 100%;
+	box-sizing: border-box;
+	padding: var(--iftp-ld-space-5);
+	color: inherit;
+	text-decoration: none;
+	background: var(--iftp-ld-surface);
+	transition: background-color var(--iftp-ld-dur-fast) var(--iftp-ld-ease);
+}
+
+#iftp-ld-entries .iftp-ld-summary__link:hover {
+	background: var(--iftp-ld-surface-hover);
+}
+
+#iftp-ld-entries .iftp-ld-summary__link:focus-visible {
+	outline-offset: -2px;
+	box-shadow: none;
+}
+
+#iftp-ld-entries .iftp-ld-summary__item--current .iftp-ld-summary__link {
+	background: var(--iftp-ld-surface-selected);
+	box-shadow: inset 0 -3px 0 var(--iftp-ld-brand);
+}
+
+#iftp-ld-entries .iftp-ld-summary__label {
+	grid-area: label;
+	font-size: 0.875rem;
+	font-weight: var(--iftp-ld-fw-medium);
+	line-height: 1.75rem;
+	color: #6b7280;
+}
+
+#iftp-ld-entries .iftp-ld-summary__amount {
+	grid-area: amount;
+	font-size: var(--iftp-ld-fs-xl);
+	font-weight: var(--iftp-ld-fw-semibold);
+	font-variant-numeric: tabular-nums;
+	letter-spacing: -0.025em;
+	line-height: var(--iftp-ld-lh-tight);
+	color: var(--iftp-ld-text-strong);
+	white-space: nowrap;
+}
+
+#iftp-ld-entries .iftp-ld-summary__count {
+	grid-area: count;
+	font-size: var(--iftp-ld-fs-sm);
+	font-weight: var(--iftp-ld-fw-medium);
+	line-height: 1rem;
+	color: #6b7280;
+}
+
+#iftp-ld-entries .iftp-ld-summary__icon {
+	grid-area: icon;
+	align-self: center;
+	display: grid;
+	place-items: center;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background: var(--iftp-ld-muted-bg);
+	color: var(--iftp-ld-muted-icon);
+}
+
+#iftp-ld-entries .iftp-ld-summary__item--paid .iftp-ld-summary__icon {
+	background: var(--iftp-ld-paid-bg);
+	color: var(--iftp-ld-paid-icon);
+}
+
+#iftp-ld-entries .iftp-ld-summary__item--pending .iftp-ld-summary__icon {
+	background: var(--iftp-ld-pending-bg);
+	color: var(--iftp-ld-pending-icon);
+}
+
+#iftp-ld-entries .iftp-ld-summary__icon .dashicons {
+	width: 20px;
+	height: 20px;
+	font-size: 20px;
+}
+
+/* ------------------------------------------------------------------ toolbar */
+
+#iftp-ld-entries .iftp-ld-toolbar {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--iftp-ld-space-3);
+	min-height: 40px;
+	padding: var(--iftp-ld-space-4) var(--iftp-ld-space-5);
+	border-bottom: 1px solid var(--iftp-ld-border);
+}
+
+#iftp-ld-entries .iftp-ld-tabs {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--iftp-ld-space-3);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#iftp-ld-entries .iftp-ld-tabs li {
+	margin: 0;
+}
+
+#iftp-ld-entries .iftp-ld-tabs__tab {
+	display: inline-flex;
+	align-items: center;
+	height: var(--iftp-ld-control-h);
+	box-sizing: border-box;
+	padding: 6px var(--iftp-ld-space-3);
+	border-radius: var(--iftp-ld-radius-sm);
+	background: #f8fafc;
+	color: var(--iftp-ld-text);
+	font-size: var(--iftp-ld-fs-base);
+	font-weight: var(--iftp-ld-fw-medium);
+	text-decoration: none;
+	transition: background-color var(--iftp-ld-dur-fast) var(--iftp-ld-ease);
+}
+
+#iftp-ld-entries .iftp-ld-tabs__tab:hover {
+	background: #e5e7eb;
+	color: var(--iftp-ld-text-strong);
+}
+
+#iftp-ld-entries .iftp-ld-tabs__tab--current,
+#iftp-ld-entries .iftp-ld-tabs__tab--current:hover {
+	background: var(--iftp-ld-brand-tint);
+	color: var(--iftp-ld-brand-active);
+	font-weight: var(--iftp-ld-fw-bold);
+	box-shadow: inset 0 -2px 0 var(--iftp-ld-brand);
+}
+
+/* The bulk bar takes the tabs' place while rows are selected; the tools stay. */
+#iftp-ld-entries[data-iftp-has-selection] .iftp-ld-toolbar__tabs {
+	display: none;
+}
+
+#iftp-ld-entries .iftp-ld-bulk {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--iftp-ld-space-2);
+	min-height: 40px;
+	box-sizing: border-box;
+	padding: var(--iftp-ld-space-1) var(--iftp-ld-space-1) var(--iftp-ld-space-1) var(--iftp-ld-space-3);
+	border-radius: var(--iftp-ld-radius-lg);
+	background: var(--iftp-ld-brand-tint);
+	color: var(--iftp-ld-text-strong);
+}
+
+#iftp-ld-entries .iftp-ld-toolbar__tools {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--iftp-ld-space-2);
+}
+
+#iftp-ld-entries .iftp-ld-search {
+	margin: 0;
+}
+
+#iftp-ld-entries .iftp-ld-search__input {
+	width: 240px;
+	min-height: var(--iftp-ld-control-h);
+	padding-left: 28px;
+	background: var(--iftp-ld-surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Ccircle cx='7' cy='7' r='4.75' fill='none' stroke='%2373738c' stroke-width='1.5'/%3E%3Cpath d='m10.5 10.5 3 3' stroke='%2373738c' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E") 8px 50% / 14px no-repeat;
+}
+
+#iftp-ld-entries .iftp-ld-tool {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	gap: var(--iftp-ld-space-1);
+}
+
+#iftp-ld-entries .iftp-ld-tool .dashicons {
+	width: 16px;
+	height: 16px;
+	font-size: 16px;
+	line-height: 1;
+}
+
+#iftp-ld-entries .iftp-ld-tool[aria-expanded="true"] {
+	background: var(--iftp-ld-brand-tint);
+	border-color: var(--iftp-ld-brand);
+}
+
+/* Decorative "some columns hidden" dot; the menu's checkboxes carry the state. */
+#iftp-ld-entries .iftp-ld-tool--has-hidden::after {
+	content: "";
+	position: absolute;
+	top: 3px;
+	right: 3px;
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background: var(--iftp-ld-brand);
+}
+
+#iftp-ld-entries .iftp-ld-badge {
+	display: inline-grid;
+	place-items: center;
+	min-width: 18px;
+	height: 18px;
+	padding: 0 4px;
+	box-sizing: border-box;
+	border-radius: var(--iftp-ld-radius-pill);
+	background: var(--iftp-ld-brand);
+	color: #fff;
+	font-size: var(--iftp-ld-fs-xs);
+	font-weight: var(--iftp-ld-fw-bold);
+	line-height: 1;
+}
+
+#iftp-ld-entries .iftp-ld-tool:hover .iftp-ld-badge,
+#iftp-ld-entries .iftp-ld-tool[aria-expanded="true"] .iftp-ld-badge {
+	background: #fff;
+	color: var(--iftp-ld-brand);
+}
+
+/* ------------------------------------------------------------------ popovers */
+
+#iftp-ld-entries .iftp-ld-tool-wrap {
+	position: relative;
+}
+
+#iftp-ld-entries .iftp-ld-popover {
+	position: absolute;
+	top: calc(100% + var(--iftp-ld-space-1));
+	right: 0;
+	z-index: var(--iftp-ld-z-popover);
+	min-width: 240px;
+	padding: var(--iftp-ld-space-2);
+	background: var(--iftp-ld-surface);
+	border-radius: var(--iftp-ld-radius-lg);
+	box-shadow: var(--iftp-ld-shadow-2);
+}
+
+#iftp-ld-entries .iftp-ld-popover__title {
+	margin: 0 0 var(--iftp-ld-space-2);
+	padding: 0 var(--iftp-ld-space-1);
+	font-size: var(--iftp-ld-fs-sm);
+	font-weight: var(--iftp-ld-fw-semibold);
+	color: var(--iftp-ld-text-strong);
+}
+
+#iftp-ld-entries .iftp-ld-popover__list,
+#iftp-ld-entries .iftp-ld-columns__list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#iftp-ld-entries .iftp-ld-popover__item {
+	display: block;
+	padding: 6px 10px;
+	border-radius: var(--iftp-ld-radius-sm);
+	color: var(--iftp-ld-text-strong);
+	text-decoration: none;
+}
+
+#iftp-ld-entries .iftp-ld-popover__item:hover,
+#iftp-ld-entries .iftp-ld-popover__item:focus {
+	background: var(--iftp-ld-surface-hover);
+}
+
+#iftp-ld-entries .iftp-ld-popover__footer {
+	margin: var(--iftp-ld-space-2) 0 0;
+	padding: var(--iftp-ld-space-2) var(--iftp-ld-space-1) 0;
+	border-top: 1px solid var(--iftp-ld-border);
+}
+
+#iftp-ld-entries .iftp-ld-columns__locked,
+#iftp-ld-entries .iftp-ld-columns__item {
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: var(--iftp-ld-space-2);
+	min-height: 30px;
+	margin: 0;
+	padding: 0 var(--iftp-ld-space-1);
+	border-radius: var(--iftp-ld-radius-sm);
+}
+
+#iftp-ld-entries .iftp-ld-columns__locked {
+	color: var(--iftp-ld-text);
+}
+
+#iftp-ld-entries .iftp-ld-columns__hint {
+	margin-left: auto;
+	font-size: var(--iftp-ld-fs-sm);
+}
+
+#iftp-ld-entries .iftp-ld-columns__handle {
+	color: var(--iftp-ld-text-muted);
+	cursor: grab;
+}
+
+#iftp-ld-entries .iftp-ld-columns__option {
+	display: flex;
+	flex: 1;
+	align-items: center;
+	gap: var(--iftp-ld-space-2);
+}
+
+#iftp-ld-entries .iftp-ld-columns__move {
+	display: grid;
+	place-items: center;
+	width: 24px;
+	height: 24px;
+	padding: 0;
+	border: 0;
+	border-radius: var(--iftp-ld-radius-sm);
+	background: transparent;
+	color: var(--iftp-ld-text);
+	cursor: pointer;
+}
+
+#iftp-ld-entries .iftp-ld-columns__move:hover {
+	background: var(--iftp-ld-surface-hover);
+}
+
+#iftp-ld-entries .iftp-ld-columns__move[aria-disabled="true"] {
+	color: var(--iftp-ld-text-disabled);
+	cursor: default;
+}
+
+#iftp-ld-entries .iftp-ld-columns__item--dragging {
+	background: var(--iftp-ld-brand-tint);
+	opacity: 0.6;
+}
+
+#iftp-ld-entries .iftp-ld-columns__item--drop-before {
+	box-shadow: inset 0 2px 0 var(--iftp-ld-brand);
+}
+
+#iftp-ld-entries .iftp-ld-columns__item--drop-after {
+	box-shadow: inset 0 -2px 0 var(--iftp-ld-brand);
+}
+
+/* ------------------------------------------------------------------ filters and chips */
+
+#iftp-ld-entries .iftp-ld-filters__form {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	gap: var(--iftp-ld-space-4) var(--iftp-ld-space-5);
+	padding: var(--iftp-ld-space-4) var(--iftp-ld-space-5);
+	background: var(--iftp-ld-surface-sunken);
+	border-bottom: 1px solid var(--iftp-ld-border);
+}
+
+#iftp-ld-entries .iftp-ld-filters__field {
+	display: flex;
+	flex-direction: column;
+	gap: var(--iftp-ld-space-1);
+	min-width: 0;
+}
+
+#iftp-ld-entries .iftp-ld-filters__field--created {
+	grid-column: span 2;
+}
+
+#iftp-ld-entries .iftp-ld-filters__label {
+	font-size: var(--iftp-ld-fs-sm);
+	font-weight: var(--iftp-ld-fw-semibold);
+	color: var(--iftp-ld-text-strong);
+}
+
+#iftp-ld-entries .iftp-ld-filters__field select {
+	max-width: 100%;
+}
+
+#iftp-ld-entries .iftp-ld-filters__range {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--iftp-ld-space-2);
+}
+
+#iftp-ld-entries .iftp-ld-affix,
+.iftp-ld-dialog .iftp-ld-affix {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--iftp-ld-space-1);
+}
+
+#iftp-ld-entries .iftp-ld-filters__range input[type="number"] {
+	width: 100px;
+}
+
+#iftp-ld-entries .iftp-ld-presets {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--iftp-ld-space-1);
+	margin: var(--iftp-ld-space-1) 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+#iftp-ld-entries .iftp-ld-presets li {
+	margin: 0;
+}
+
+#iftp-ld-entries .iftp-ld-presets__item--current.button {
+	background: var(--iftp-ld-brand-tint);
+	border-color: var(--iftp-ld-brand);
+	color: var(--iftp-ld-brand-active);
+}
+
+#iftp-ld-entries .iftp-ld-filters__actions {
+	display: flex;
+	grid-column: 1 / -1;
+	align-items: center;
+	gap: var(--iftp-ld-space-3);
+}
+
+#iftp-ld-entries .iftp-ld-chips-row {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--iftp-ld-space-2);
+	padding: var(--iftp-ld-space-2) var(--iftp-ld-space-5) var(--iftp-ld-space-3);
+	border-bottom: 1px solid var(--iftp-ld-border);
+}
+
+#iftp-ld-entries .iftp-ld-chips,
+.iftp-ld-dialog .iftp-ld-chips {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--iftp-ld-space-2);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#iftp-ld-entries .iftp-ld-chips li,
+.iftp-ld-dialog .iftp-ld-chips li {
+	margin: 0;
+}
+
+#iftp-ld-entries .iftp-ld-chip,
+.iftp-ld-dialog .iftp-ld-chip {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--iftp-ld-space-1);
+	height: 24px;
+	box-sizing: border-box;
+	padding: 0 var(--iftp-ld-space-1) 0 10px;
+	border: 1px solid var(--ld-color-primitives-blue-175, #b6c7f7);
+	border-radius: var(--iftp-ld-radius-pill);
+	background: var(--iftp-ld-brand-tint);
+	color: var(--iftp-ld-brand-active);
+	font-size: var(--iftp-ld-fs-sm);
+	font-weight: var(--iftp-ld-fw-medium);
+	text-decoration: none;
+}
+
+#iftp-ld-entries .iftp-ld-chip__key {
+	font-weight: var(--iftp-ld-fw-regular);
+}
+
+#iftp-ld-entries .iftp-ld-chip__value {
+	max-width: 24ch;
+	overflow: hidden;
+	font-weight: var(--iftp-ld-fw-semibold);
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+#iftp-ld-entries .iftp-ld-chip__remove {
+	display: grid;
+	place-items: center;
+	width: 18px;
+	height: 18px;
+	border-radius: 50%;
+	font-size: 14px;
+	line-height: 1;
+}
+
+#iftp-ld-entries .iftp-ld-chip:hover .iftp-ld-chip__remove {
+	background: var(--iftp-ld-brand-tint-strong);
+}
+
+.iftp-ld-dialog .iftp-ld-chip--button {
+	padding: 0 10px;
+	font-family: var(--iftp-ld-font-mono);
+	cursor: pointer;
+}
+
+.iftp-ld-dialog .iftp-ld-chip--button:hover,
+.iftp-ld-dialog .iftp-ld-chip--button:focus-visible {
+	background: var(--iftp-ld-brand-tint-strong);
+}
+
+/* ------------------------------------------------------------------ table */
+
+#iftp-ld-entries .iftp-ld-stage {
+	position: relative;
+}
+
+#iftp-ld-entries .iftp-ld-table-wrap {
+	overflow-x: auto;
+	padding: 2px; /* keeps focus rings from being clipped by the scroller */
+}
+
+#iftp-ld-entries .iftp-ld-table-wrap:focus-visible {
+	outline-offset: -2px;
+}
+
+#iftp-ld-entries .iftp-ld-table.widefat {
+	border: 0;
+	box-shadow: none;
+}
+
+#iftp-ld-entries .iftp-ld-table th,
+#iftp-ld-entries .iftp-ld-table td {
+	padding: var(--iftp-ld-space-3) 10px;
+	vertical-align: middle;
+	font-size: var(--iftp-ld-fs-base);
+	line-height: var(--iftp-ld-lh-base);
+	color: var(--iftp-ld-text);
+}
+
+#iftp-ld-entries .iftp-ld-table thead th,
+#iftp-ld-entries .iftp-ld-table thead td {
+	font-weight: var(--iftp-ld-fw-bold);
+	color: var(--iftp-ld-text-strong);
+	background: var(--iftp-ld-surface);
+	border-bottom: 1px solid var(--iftp-ld-border);
+}
+
+#iftp-ld-entries .iftp-ld-table thead th a {
+	display: inline-flex;
+	align-items: center;
+	padding: 0;
+	color: var(--iftp-ld-text-strong);
+}
+
+#iftp-ld-entries .iftp-ld-table .check-column {
+	width: 2.2em;
+	padding: var(--iftp-ld-space-3) 0 var(--iftp-ld-space-3) var(--iftp-ld-space-3);
+	vertical-align: middle;
+}
+
+#iftp-ld-entries .iftp-ld-table .check-column input {
+	margin: 0;
+}
+
+/* Every data row is followed by a hidden details row, so WP's odd/even would stripe every row. */
+#iftp-ld-entries .iftp-ld-table > tbody > tr.iftp-ld-table__row:nth-child(4n + 1) {
+	background: var(--iftp-ld-surface-stripe);
+}
+
+#iftp-ld-entries .iftp-ld-table > tbody > tr.iftp-ld-table__row:hover {
+	background: var(--iftp-ld-surface-hover);
+}
+
+#iftp-ld-entries .iftp-ld-table > tbody > tr.iftp-ld-table__row--expanded {
+	background: var(--iftp-ld-surface-selected);
+}
+
+#iftp-ld-entries .iftp-ld-table > tbody > tr.iftp-ld-table__row--expanded > :first-child,
+#iftp-ld-entries .iftp-ld-table > tbody > tr.iftp-ld-table__row--selected > :first-child {
+	box-shadow: inset 3px 0 0 var(--iftp-ld-brand);
+}
+
+/* Declared after expanded, so selected wins. */
+#iftp-ld-entries .iftp-ld-table > tbody > tr.iftp-ld-table__row--selected {
+	background: var(--iftp-ld-surface-selected);
+}
+
+#iftp-ld-entries .iftp-ld-table .column-amount {
+	font-size: var(--iftp-ld-fs-md);
+	font-variant-numeric: tabular-nums;
+	text-align: right;
+	white-space: nowrap;
+}
+
+#iftp-ld-entries .iftp-ld-table thead .column-amount a {
+	justify-content: flex-end;
+}
+
+#iftp-ld-entries .iftp-ld-table .column-status {
+	width: 133px;
+}
+
+#iftp-ld-entries .iftp-ld-table .column-created,
+#iftp-ld-entries .iftp-ld-table .column-order {
+	white-space: nowrap;
+}
+
+#iftp-ld-entries .iftp-ld-ref-line {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--iftp-ld-space-1);
+}
+
+#iftp-ld-entries .iftp-ld-ref {
+	padding: 0;
+	border: 0;
+	background: none;
+	color: var(--iftp-ld-text-strong);
+	font-size: var(--iftp-ld-fs-md);
+	font-weight: var(--iftp-ld-fw-bold);
+	cursor: pointer;
+	text-align: left;
+}
+
+#iftp-ld-entries .iftp-ld-ref:hover {
+	color: var(--iftp-ld-brand);
+}
+
+#iftp-ld-entries button.learndash-copy-text,
+#iftp-ld-entry button.learndash-copy-text {
+	padding: 0 2px;
+	font-size: var(--iftp-ld-fs-base);
+	line-height: 1;
+}
+
+#iftp-ld-entries .learndash-copy-text .dashicons,
+#iftp-ld-entry .learndash-copy-text .dashicons {
+	width: auto;
+	height: auto;
+	font-size: inherit;
+	line-height: inherit;
+}
+
+#iftp-ld-entries .iftp-ld-table .row-actions {
+	padding-top: 2px;
+	color: var(--iftp-ld-text-disabled);
+}
+
+#iftp-ld-entries .iftp-ld-table .row-actions .button-link {
+	font-size: var(--iftp-ld-fs-base);
+	text-decoration: none;
+}
+
+#iftp-ld-entries .iftp-ld-row-action--disabled {
+	color: var(--iftp-ld-text-disabled);
+	cursor: help;
+}
+
+#iftp-ld-entries .iftp-ld-student,
+#iftp-ld-entries .iftp-ld-product,
+#iftp-ld-entry .iftp-ld-student,
+#iftp-ld-entry .iftp-ld-product {
+	display: flex;
+	flex-direction: column;
+	min-width: 0;
+}
+
+#iftp-ld-entries .iftp-ld-student__name,
+#iftp-ld-entries .iftp-ld-product__title {
+	color: var(--iftp-ld-text-strong);
+	font-weight: var(--iftp-ld-fw-medium);
+}
+
+#iftp-ld-entries .iftp-ld-student__email,
+#iftp-ld-entries .iftp-ld-product__type,
+#iftp-ld-entry .iftp-ld-student__email,
+#iftp-ld-entry .iftp-ld-product__type {
+	font-size: var(--iftp-ld-fs-sm);
+	color: var(--iftp-ld-text);
+	word-break: break-all;
+}
+
+#iftp-ld-entries .iftp-ld-product__adhoc,
+#iftp-ld-entries .iftp-ld-method--placeholder,
+#iftp-ld-entry .iftp-ld-product__adhoc,
+#iftp-ld-entry .iftp-ld-method--placeholder {
+	color: var(--iftp-ld-text);
+	font-style: italic;
+}
+
+#iftp-ld-entries .iftp-ld-method,
+#iftp-ld-entry .iftp-ld-method {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--iftp-ld-space-2);
+	font-size: var(--iftp-ld-fs-base);
+}
+
+#iftp-ld-entries .iftp-ld-method__logo-slot,
+#iftp-ld-entry .iftp-ld-method__logo-slot {
+	display: inline-grid;
+	flex: 0 0 40px;
+	place-items: center;
+	width: 40px;
+	height: 20px;
+}
+
+#iftp-ld-entries .iftp-ld-method__logo,
+#iftp-ld-entry .iftp-ld-method__logo {
+	display: block;
+	max-width: 40px;
+	max-height: 20px;
+}
+
+#iftp-ld-entries .iftp-ld-method--placeholder .iftp-ld-method__logo-slot {
+	display: none;
+}
+
+/* LearnDash's copy-text tooltip look; ours, since LearnDash's is bound to the copy button. */
+#iftp-ld-entries .iftp-ld-tip,
+#iftp-ld-entry .iftp-ld-tip {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	gap: 2px;
+	cursor: help;
+}
+
+#iftp-ld-entries .iftp-ld-tip .dashicons,
+#iftp-ld-entry .iftp-ld-tip .dashicons {
+	width: 14px;
+	height: 14px;
+	font-size: 14px;
+}
+
+#iftp-ld-entries .iftp-ld-tip::after,
+#iftp-ld-entry .iftp-ld-tip::after {
+	content: attr(data-tooltip);
+	position: absolute;
+	bottom: calc(100% + 6px);
+	left: 50%;
+	z-index: var(--iftp-ld-z-popover);
+	box-sizing: border-box;
+	width: max-content;
+	max-width: 240px;
+	padding: 0.375rem 0.5rem;
+	border-radius: 0.375rem;
+	background: #2271b1;
+	color: #fff;
+	font-size: 0.8125rem;
+	font-weight: 700;
+	line-height: 1.4;
+	white-space: normal;
+	pointer-events: none;
+	opacity: 0;
+	transform: translate(-50%, -10px);
+	transition: opacity var(--iftp-ld-dur-slow) ease, transform var(--iftp-ld-dur-slow) ease;
+}
+
+#iftp-ld-entries .iftp-ld-tip:hover::after,
+#iftp-ld-entries .iftp-ld-tip:focus-visible::after,
+#iftp-ld-entry .iftp-ld-tip:hover::after,
+#iftp-ld-entry .iftp-ld-tip:focus-visible::after {
+	opacity: 1;
+	transform: translate(-50%, 0);
+}
+
+/* ------------------------------------------------------------------ details row */
+
+#iftp-ld-entries .iftp-ld-table > tbody > tr.iftp-ld-table__details > td {
+	padding: 0;
+}
+
+#iftp-ld-entries .iftp-ld-details {
+	padding: var(--iftp-ld-space-4) var(--iftp-ld-space-5) var(--iftp-ld-space-5) 46px;
+	background: var(--iftp-ld-surface-selected);
+	box-shadow: inset 3px 0 0 var(--iftp-ld-brand);
+}
+
+#iftp-ld-entries .iftp-ld-details .ld-order-details__container {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--iftp-ld-space-4) 4.94rem;
+}
+
+#iftp-ld-entries .iftp-ld-details .ld-order-details__table {
+	min-width: 220px;
+}
+
+#iftp-ld-entries .iftp-ld-details__key,
+#iftp-ld-entry .iftp-ld-details__key {
+	font-weight: var(--iftp-ld-fw-semibold);
+	color: var(--iftp-ld-text-strong);
+}
+
+#iftp-ld-entries .iftp-ld-details__actions {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--iftp-ld-space-3);
+	margin-top: var(--iftp-ld-space-4);
+	padding-top: var(--iftp-ld-space-3);
+	border-top: 1px solid var(--iftp-ld-border);
+}
+
+#iftp-ld-entries .iftp-ld-skeleton-line {
+	display: block;
+	width: 40%;
+	height: 10px;
+	margin: 0 0 var(--iftp-ld-space-2);
+	border-radius: var(--iftp-ld-radius-sm);
+	background: var(--iftp-ld-border-subtle);
+}
+
+#iftp-ld-entries .iftp-ld-skeleton-line:nth-child(2) {
+	width: 60%;
+}
+
+/* ------------------------------------------------------------------ empty and loader */
+
+#iftp-ld-entries .iftp-ld-table__empty-row > td {
+	background: var(--iftp-ld-surface);
+}
+
+#iftp-ld-entries .iftp-ld-empty {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: var(--iftp-ld-space-2);
+	padding: var(--iftp-ld-space-14) var(--iftp-ld-space-5);
+	text-align: center;
+}
+
+#iftp-ld-entries .iftp-ld-empty__title {
+	margin: var(--iftp-ld-space-2) 0 0;
+	font-size: var(--iftp-ld-fs-lg);
+	font-weight: var(--iftp-ld-fw-semibold);
+	color: var(--iftp-ld-text-strong);
+}
+
+#iftp-ld-entries .iftp-ld-empty__text {
+	margin: 0;
+	max-width: 48ch;
+	font-size: var(--iftp-ld-fs-base);
+	color: var(--iftp-ld-text);
+}
+
+/* Loader over a populated table; with an empty state on screen, its own mark spins instead. */
+#iftp-ld-entries .iftp-ld-loader {
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+	padding-top: var(--iftp-ld-space-14);
+	background: rgb(255 255 255 / 60%);
+	pointer-events: none;
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity var(--iftp-ld-dur-slow) var(--iftp-ld-ease), visibility 0s linear var(--iftp-ld-dur-slow);
+}
+
+#iftp-ld-entries .iftp-ld-loader .iftp-ld-mark {
+	position: sticky;
+	top: 45vh;
+}
+
+#iftp-ld-entries[data-iftp-loading] .iftp-ld-loader {
+	pointer-events: auto;
+	opacity: 1;
+	visibility: visible;
+	transition: opacity var(--iftp-ld-dur-slow) var(--iftp-ld-ease) var(--iftp-ld-mark-delay), visibility 0s linear var(--iftp-ld-mark-delay);
+}
+
+#iftp-ld-entries[data-iftp-loading]:has(.iftp-ld-empty) .iftp-ld-loader {
+	display: none;
+}
+
+/* ------------------------------------------------------------------ footer */
+
+#iftp-ld-entries .iftp-ld-footer {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--iftp-ld-space-3) var(--iftp-ld-space-6);
+	padding: var(--iftp-ld-space-3) var(--iftp-ld-space-5);
+	background: var(--iftp-ld-surface-sunken);
+	border-top: 1px solid var(--iftp-ld-border);
+	border-radius: 0 0 var(--iftp-ld-radius-xl) var(--iftp-ld-radius-xl);
+	font-size: var(--iftp-ld-fs-base);
+	font-variant-numeric: tabular-nums;
+}
+
+#iftp-ld-entries .iftp-ld-footer__nav,
+#iftp-ld-entries .iftp-ld-per-page {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--iftp-ld-space-2);
+	margin: 0;
+}
+
+#iftp-ld-entries .iftp-ld-footer__nav {
+	gap: var(--iftp-ld-space-4);
+}
+
+#iftp-ld-entries .iftp-ld-per-page__custom input {
+	width: 60px;
+}
+
+#iftp-ld-entries .iftp-ld-pagination {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--iftp-ld-space-1);
+}
+
+#iftp-ld-entries .iftp-ld-pagination__item.button {
+	min-width: 30px;
+	padding: 0 6px;
+	text-align: center;
+}
+
+#iftp-ld-entries .iftp-ld-pagination__item--current.button,
+#iftp-ld-entries .iftp-ld-pagination__item--current.button:hover {
+	background: var(--iftp-ld-brand);
+	border-color: var(--iftp-ld-brand);
+	color: #fff;
+	cursor: default;
+}
+
+#iftp-ld-entries .iftp-ld-pagination__jump {
+	margin: 0;
+}
+
+#iftp-ld-entries .iftp-ld-pagination__jump input {
+	width: 48px;
+	min-height: var(--iftp-ld-control-h);
+	text-align: center;
+}
+
+/* ------------------------------------------------------------------ dialogs */
+
+.iftp-ld-dialog .iftp-ld-dialog__intro {
+	margin: 0 0 var(--iftp-ld-space-4);
+	color: var(--iftp-ld-text);
+}
+
+.iftp-ld-dialog .iftp-ld-dialog__label {
+	display: block;
+	margin: 0 0 var(--iftp-ld-space-1);
+	font-size: var(--iftp-ld-fs-sm);
+	font-weight: var(--iftp-ld-fw-semibold);
+	color: var(--iftp-ld-text-strong);
+}
+
+.iftp-ld-dialog .iftp-ld-dialog__input {
+	width: 100%;
+	max-width: 100%;
+}
+
+.iftp-ld-dialog .iftp-ld-dialog__input[aria-invalid="true"],
+.iftp-ld-dialog input[aria-invalid="true"] {
+	border-color: #d63638;
+	box-shadow: 0 0 0 1px #d63638;
+}
+
+.iftp-ld-dialog .iftp-ld-dialog__error,
+.iftp-ld-dialog .iftp-ld-dialog__field-error {
+	display: flex;
+	align-items: flex-start;
+	gap: var(--iftp-ld-space-1);
+	margin: var(--iftp-ld-space-2) 0 0;
+	color: var(--iftp-ld-danger);
+	font-size: var(--iftp-ld-fs-sm);
+}
+
+.iftp-ld-dialog .iftp-ld-dialog__error[hidden],
+.iftp-ld-dialog .iftp-ld-dialog__field-error[hidden],
+.iftp-ld-dialog [hidden] {
+	display: none;
+}
+
+.iftp-ld-dialog .iftp-ld-dialog__note {
+	margin: var(--iftp-ld-space-2) 0 0;
+	font-weight: var(--iftp-ld-fw-semibold);
+}
+
+.iftp-ld-dialog .iftp-ld-new-payment__row {
+	margin: 0 0 var(--iftp-ld-space-4);
+}
+
+.iftp-ld-dialog .iftp-ld-new-payment__row .iftp-ld-affix input {
+	width: 140px;
+}
+
+.iftp-ld-dialog .iftp-ld-email__editor {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+	gap: var(--iftp-ld-space-5);
+}
+
+.iftp-ld-dialog .iftp-ld-email__compose {
+	display: flex;
+	flex-direction: column;
+	gap: var(--iftp-ld-space-3);
+	min-width: 0;
+}
+
+.iftp-ld-dialog .iftp-ld-email__tag-help {
+	min-height: 2.6em;
+	margin: var(--iftp-ld-space-1) 0 0;
+	color: var(--iftp-ld-text);
+}
+
+.iftp-ld-dialog .iftp-ld-email__body-head {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--iftp-ld-space-2);
+}
+
+.iftp-ld-dialog .iftp-ld-email__body textarea {
+	width: 100%;
+	font-family: var(--iftp-ld-font-mono);
+}
+
+.iftp-ld-dialog .iftp-ld-email__body .CodeMirror {
+	height: clamp(240px, calc(100vh - 520px), 440px);
+	border: 1px solid var(--iftp-ld-border-control);
+	border-radius: var(--iftp-ld-radius-sm);
+}
+
+.iftp-ld-dialog .iftp-ld-email__preview {
+	display: flex;
+	flex-direction: column;
+	min-width: 0;
+}
+
+.iftp-ld-dialog .iftp-ld-email__preview-head {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	margin: 0 0 var(--iftp-ld-space-2);
+}
+
+.iftp-ld-dialog .iftp-ld-email__frame {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	min-height: 360px;
+	overflow: hidden;
+	background: var(--iftp-ld-surface-sunken);
+	border: 1px solid var(--iftp-ld-border);
+	border-radius: var(--iftp-ld-radius-lg);
+	transition: opacity var(--iftp-ld-dur-base) var(--iftp-ld-ease);
+}
+
+.iftp-ld-dialog .iftp-ld-email__frame--loading {
+	opacity: 0.6;
+}
+
+.iftp-ld-dialog .iftp-ld-email__preview-subject {
+	margin: 0;
+	padding: var(--iftp-ld-space-2) var(--iftp-ld-space-3);
+	border-bottom: 1px solid var(--iftp-ld-border);
+	background: var(--iftp-ld-surface);
+}
+
+.iftp-ld-dialog .iftp-ld-email__iframe {
+	flex: 1;
+	width: 100%;
+	min-height: 320px;
+	border: 0;
+}
+
+/* ------------------------------------------------------------------ toast and scroll */
+
+.iftp-ld-toast {
+	position: fixed;
+	bottom: var(--iftp-ld-space-6);
+	left: 50%;
+	z-index: var(--iftp-ld-z-toast);
+	display: flex;
+	align-items: center;
+	gap: var(--iftp-ld-space-2);
+	max-width: min(480px, 92vw);
+	box-sizing: border-box;
+	padding: 10px 14px 10px var(--iftp-ld-space-3);
+	border: 1px solid transparent;
+	border-radius: var(--iftp-ld-radius-lg);
+	background: var(--iftp-ld-toast-bg);
+	box-shadow: var(--iftp-ld-shadow-3);
+	color: #fff;
+	font-size: var(--iftp-ld-fs-base);
+	translate: -50% 0;
+	animation: iftp-ld-toast-in var(--iftp-ld-dur-base) var(--iftp-ld-ease-out);
+}
+
+.iftp-ld-toast[hidden] {
+	display: none;
+}
+
+.iftp-ld-toast__icon {
+	flex: 0 0 16px;
+	width: 16px;
+	height: 16px;
+	background: currentcolor;
+	mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='m3.5 8.5 3 3 6-7' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.iftp-ld-toast--error {
+	background: var(--iftp-ld-toast-error-bg);
+}
+
+/* A circle-!, so an error isn't colour-only. */
+.iftp-ld-toast--error .iftp-ld-toast__icon {
+	mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6.25' fill='none' stroke='%23000' stroke-width='1.5'/%3E%3Cpath d='M8 4.75v4M8 11.25v.01' stroke='%23000' stroke-width='1.75' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+
+@keyframes iftp-ld-toast-in {
+	from {
+		opacity: 0;
+		translate: -50% 8px;
+	}
+}
+
+#iftp-ld-entries .iftp-ld-scroll-top {
+	position: fixed;
+	right: var(--iftp-ld-space-6);
+	bottom: var(--iftp-ld-space-6);
+	z-index: var(--iftp-ld-z-scroll);
+	display: grid;
+	place-items: center;
+	width: 40px;
+	height: 40px;
+	padding: 0;
+	border: 1px solid transparent;
+	border-radius: 50%;
+	background: var(--iftp-ld-surface);
+	box-shadow: var(--iftp-ld-shadow-2);
+	color: var(--iftp-ld-text-strong);
+	cursor: pointer;
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity var(--iftp-ld-dur-base) var(--iftp-ld-ease), visibility 0s linear var(--iftp-ld-dur-base);
+}
+
+#iftp-ld-entries .iftp-ld-scroll-top--visible {
+	opacity: 1;
+	visibility: visible;
+	transition: opacity var(--iftp-ld-dur-base) var(--iftp-ld-ease);
+}
+
+/* ------------------------------------------------------------------ entry page */
+
+#iftp-ld-entry .iftp-ld-entry__back {
+	margin: var(--iftp-ld-space-4) 0 var(--iftp-ld-space-2);
+	font-size: var(--iftp-ld-fs-base);
+}
+
+#iftp-ld-entry .iftp-ld-entry__back a {
+	text-decoration: none;
+}
+
+#iftp-ld-entry .iftp-ld-entry__title-row {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 10px;
+}
+
+#iftp-ld-entry .iftp-ld-entry__title {
+	margin: 0;
+	padding: 0;
+	font-size: 1.51075rem;
+	font-weight: 400;
+	line-height: 1.5;
+	color: var(--iftp-ld-text-strong);
+}
+
+#iftp-ld-entry .iftp-ld-entry__chip {
+	display: inline-flex;
+	align-items: center;
+	padding: 0.125rem 0.75rem;
+	border: 1px solid var(--iftp-ld-border);
+	border-radius: 1.375rem;
+	background: var(--iftp-ld-surface-sunken);
+	color: var(--iftp-ld-text-strong);
+	font-size: 0.75rem;
+	font-weight: 700;
+	line-height: 2;
+}
+
+#iftp-ld-entry .postbox {
+	padding: 1.75rem 1.38rem;
+	border: 0;
+	border-radius: var(--iftp-ld-radius-lg);
+	box-shadow: var(--iftp-ld-shadow-1);
+}
+
+#iftp-ld-entry .postbox-header {
+	border-bottom: 0;
+}
+
+#iftp-ld-entry .postbox-header .hndle {
+	margin: 0 0 1.875rem;
+	padding: 0;
+	font-size: 1.25rem;
+	font-weight: 400;
+	letter-spacing: -0.00438rem;
+	cursor: default;
+}
+
+#iftp-ld-entry .postbox .inside {
+	margin: 0;
+	padding: 0;
+}
+
+#iftp-ld-entry #postbox-container-1 .postbox {
+	padding: 1rem 1.25rem;
+}
+
+#iftp-ld-entry #postbox-container-1 .postbox-header .hndle {
+	margin-bottom: var(--iftp-ld-space-3);
+	font-size: 0.875rem;
+	font-weight: 700;
+}
+
+#iftp-ld-entry .iftp-ld-hero {
+	border-left: 4px solid var(--iftp-ld-muted-icon);
+}
+
+#iftp-ld-entry .iftp-ld-hero--paid {
+	border-left-color: var(--iftp-ld-paid-icon);
+}
+
+#iftp-ld-entry .iftp-ld-hero--pending {
+	border-left-color: var(--iftp-ld-pending-icon);
+}
+
+#iftp-ld-entry .iftp-ld-hero__eyebrow {
+	margin: 0;
+	font-size: var(--iftp-ld-fs-sm);
+	font-weight: var(--iftp-ld-fw-bold);
+	letter-spacing: var(--iftp-ld-tracking-caps);
+	text-transform: uppercase;
+	color: var(--iftp-ld-text);
+}
+
+#iftp-ld-entry .iftp-ld-hero__amount {
+	margin: var(--iftp-ld-space-1) 0 var(--iftp-ld-space-2);
+	font-size: var(--iftp-ld-fs-xl);
+	font-weight: var(--iftp-ld-fw-bold);
+	font-variant-numeric: tabular-nums;
+	color: var(--iftp-ld-text-strong);
+}
+
+#iftp-ld-entry .iftp-ld-hero__meta {
+	display: grid;
+	grid-template-columns: max-content 1fr;
+	gap: 6px var(--iftp-ld-space-4);
+	margin: var(--iftp-ld-space-4) 0 0;
+}
+
+#iftp-ld-entry .iftp-ld-hero__meta > div {
+	display: contents;
+}
+
+#iftp-ld-entry .iftp-ld-hero__meta dt {
+	font-size: var(--iftp-ld-fs-sm);
+	font-weight: var(--iftp-ld-fw-semibold);
+	color: var(--iftp-ld-text);
+}
+
+#iftp-ld-entry .iftp-ld-hero__meta dd {
+	margin: 0;
+	font-size: var(--iftp-ld-fs-base);
+}
+
+#iftp-ld-entry .iftp-ld-journey {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	margin: var(--iftp-ld-space-5) 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+#iftp-ld-entry .iftp-ld-journey__step {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	margin: 0;
+	padding-top: 22px;
+}
+
+/* The connector runs from the previous dot to this one. */
+#iftp-ld-entry .iftp-ld-journey__step::before {
+	content: "";
+	position: absolute;
+	top: 5px;
+	right: 0;
+	left: 0;
+	height: 2px;
+	background: var(--iftp-ld-border);
+}
+
+#iftp-ld-entry .iftp-ld-journey__step:first-child::before {
+	left: 6px;
+}
+
+#iftp-ld-entry .iftp-ld-journey__step--done::before {
+	background: var(--iftp-ld-brand);
+}
+
+#iftp-ld-entry .iftp-ld-journey__step::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	box-sizing: border-box;
+	width: 12px;
+	height: 12px;
+	border: 2px solid var(--iftp-ld-text-disabled);
+	border-radius: 50%;
+	background: var(--iftp-ld-surface);
+}
+
+#iftp-ld-entry .iftp-ld-journey__step--done::after {
+	border-color: var(--iftp-ld-brand);
+	background: var(--iftp-ld-brand);
+}
+
+#iftp-ld-entry .iftp-ld-journey__label {
+	font-weight: var(--iftp-ld-fw-semibold);
+	color: var(--iftp-ld-text-strong);
+}
+
+#iftp-ld-entry .iftp-ld-journey__time {
+	font-size: var(--iftp-ld-fs-sm);
+}
+
+#iftp-ld-entry .iftp-ld-actions {
+	padding: 0;
+	overflow: hidden;
+}
+
+#iftp-ld-entry #postbox-container-1 .iftp-ld-actions {
+	padding: 0;
+}
+
+#iftp-ld-entry .iftp-ld-actions .postbox-header {
+	padding: 1rem 1.25rem 0;
+}
+
+#iftp-ld-entry .iftp-ld-actions__main {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: var(--iftp-ld-space-3);
+	padding: 0 1.25rem 1.375rem;
+	font-size: var(--iftp-ld-fs-md);
+}
+
+#iftp-ld-entry .iftp-ld-actions__mark {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--iftp-ld-space-2);
+}
+
+#iftp-ld-entry .iftp-ld-actions__bar {
+	padding: 0.4375rem 0.625rem;
+	border-top: 1px solid var(--iftp-ld-border);
+	background: var(--iftp-ld-surface-sunken);
+}
+
+#iftp-ld-entry .iftp-ld-timestamps {
+	display: grid;
+	grid-template-columns: max-content 1fr;
+	gap: 6px var(--iftp-ld-space-3);
+	margin: 0;
+}
+
+#iftp-ld-entry .iftp-ld-timestamps dt {
+	font-weight: var(--iftp-ld-fw-semibold);
+}
+
+#iftp-ld-entry .iftp-ld-timestamps dd {
+	margin: 0;
+}
+
+#iftp-ld-entry .ld-order-details__container {
+	display: block;
+}
+
+#iftp-ld-entry .ld-order-details__tbody [role="row"] {
+	margin-bottom: 6px;
+	word-break: break-word;
+}
+
+/* ------------------------------------------------------------------ hidden columns */
+
+#iftp-ld-entries[data-iftp-hidden-cols~="student"] .iftp-ld-table [data-col="student"],
+#iftp-ld-entries[data-iftp-hidden-cols~="product"] .iftp-ld-table [data-col="product"],
+#iftp-ld-entries[data-iftp-hidden-cols~="method"] .iftp-ld-table [data-col="method"],
+#iftp-ld-entries[data-iftp-hidden-cols~="amount"] .iftp-ld-table [data-col="amount"],
+#iftp-ld-entries[data-iftp-hidden-cols~="status"] .iftp-ld-table [data-col="status"],
+#iftp-ld-entries[data-iftp-hidden-cols~="order"] .iftp-ld-table [data-col="order"],
+#iftp-ld-entries[data-iftp-hidden-cols~="created"] .iftp-ld-table [data-col="created"] {
+	display: none;
+}
+
+/* ------------------------------------------------------------------ responsive */
+
+@media (width <= 1240px) {
+	#iftp-ld-entries .iftp-ld-toolbar__tools {
+		flex: 1 1 100%;
+	}
+
+	#iftp-ld-entries .iftp-ld-search {
+		flex: 1 1 240px;
+	}
+
+	#iftp-ld-entries .iftp-ld-search__input {
+		width: 100%;
+	}
+}
+
+@media (width <= 900px) {
+	.iftp-ld-dialog .iftp-ld-email__editor {
+		grid-template-columns: 1fr;
+	}
+}
+
+@media (width <= 782px) {
+	#iftp-ld-entries,
+	#iftp-ld-entry {
+		--iftp-ld-control-h: 40px;
+	}
+
+	#iftp-ld-entries .iftp-ld-summary__list {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	#iftp-ld-entries .iftp-ld-filters__field--created {
+		grid-column: auto;
+	}
+
+	#iftp-ld-entries .iftp-ld-bulk {
+		position: sticky;
+		bottom: 0;
+		z-index: var(--iftp-ld-z-bulk);
+		flex: 1 1 100%;
+	}
+}
+
+@media (width <= 600px) {
+	#iftp-ld-entries .iftp-ld-summary__list {
+		grid-template-columns: 1fr;
+	}
+
+	#iftp-ld-entries .iftp-ld-journey,
+	#iftp-ld-entry .iftp-ld-journey {
+		grid-template-columns: 1fr;
+		gap: var(--iftp-ld-space-3);
+	}
+
+	/* Rows become cards. */
+	#iftp-ld-entries .iftp-ld-table thead {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip-path: inset(50%);
+	}
+
+	#iftp-ld-entries .iftp-ld-table,
+	#iftp-ld-entries .iftp-ld-table tbody {
+		display: block;
+	}
+
+	#iftp-ld-entries .iftp-ld-table > tbody > tr.iftp-ld-table__row,
+	#iftp-ld-entries .iftp-ld-table > tbody > tr.iftp-ld-table__row:nth-child(4n + 1) {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		gap: var(--iftp-ld-space-1) var(--iftp-ld-space-3);
+		margin: 0 var(--iftp-ld-space-3) var(--iftp-ld-space-3);
+		padding: var(--iftp-ld-space-3) var(--iftp-ld-space-4);
+		background: var(--iftp-ld-surface);
+		border: 1px solid var(--iftp-ld-border);
+		border-radius: var(--iftp-ld-radius-lg);
+	}
+
+	#iftp-ld-entries .iftp-ld-table > tbody > tr > td,
+	#iftp-ld-entries .iftp-ld-table > tbody > tr > th {
+		display: block;
+		padding: 0;
+	}
+
+	#iftp-ld-entries .iftp-ld-table > tbody > tr > td[data-label] {
+		grid-column: 1 / -1;
+		text-align: left;
+	}
+
+	#iftp-ld-entries .iftp-ld-table td[data-label]::before {
+		content: attr(data-label);
+		display: block;
+		font-size: var(--iftp-ld-fs-sm);
+		font-weight: var(--iftp-ld-fw-bold);
+		letter-spacing: var(--iftp-ld-tracking-caps);
+		text-transform: uppercase;
+		color: var(--iftp-ld-text);
+	}
+
+	#iftp-ld-entries .iftp-ld-table > tbody > tr.iftp-ld-table__details {
+		display: block;
+		margin: 0 var(--iftp-ld-space-3) var(--iftp-ld-space-3);
+	}
+
+	#iftp-ld-entries .iftp-ld-details {
+		padding-left: var(--iftp-ld-space-4);
+	}
+}
+
+/* ------------------------------------------------------------------ forced colours, motion, no-JS */
+
+@media (forced-colors: active) {
+	#iftp-ld-entries .iftp-ld-tabs__tab--current,
+	#iftp-ld-entries .iftp-ld-pagination__item--current,
+	#iftp-ld-entries .iftp-ld-summary__item--current .iftp-ld-summary__link {
+		outline: 2px solid Highlight;
+		outline-offset: -2px;
+	}
+
+	#iftp-ld-entries .iftp-ld-table > tbody > tr.iftp-ld-table__row--expanded > :first-child,
+	#iftp-ld-entries .iftp-ld-table > tbody > tr.iftp-ld-table__row--selected > :first-child {
+		border-left: 3px solid Highlight;
+	}
+
+	#iftp-ld-entries .iftp-ld-chip,
+	#iftp-ld-entries .iftp-ld-badge,
+	.iftp-ld-dialog .iftp-ld-chip {
+		border: 1px solid ButtonText;
+	}
+
+	#iftp-ld-entries .iftp-ld-mark__disc {
+		background: Canvas;
+		border: 2px solid CanvasText;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	#iftp-ld-entries,
+	#iftp-ld-entry,
+	.iftp-ld-scope {
+		--iftp-ld-dur-fast: 0ms;
+		--iftp-ld-dur-base: 0ms;
+		--iftp-ld-dur-slow: 0ms;
+	}
+
+	/* The IDs out-rank every animated class rule in this sheet. */
+	#iftp-ld-entries *,
+	#iftp-ld-entries *::before,
+	#iftp-ld-entries *::after,
+	#iftp-ld-entry *,
+	#iftp-ld-entry *::before,
+	#iftp-ld-entry *::after {
+		animation: none;
+		transition-duration: 0ms;
+	}
+}
+
+/* No JS: WP swaps body.no-js for .js inline, so these only match with scripts off. */
+.no-js #iftp-ld-entries .iftp-ld-tool--filters,
+.no-js #iftp-ld-entries .iftp-ld-tool-wrap--columns {
+	display: none;
+}
+
+.no-js #iftp-ld-entries .iftp-ld-filters[hidden] {
+	display: block;
+}
+
+.no-js #iftp-ld-entries .iftp-ld-per-page__custom[hidden] {
+	display: inline-flex;
+}
+
+/* Author display rules beat the UA's [hidden]; the ID out-ranks every class rule, so no !important. */
+#iftp-ld-entries [hidden]:not(.iftp-ld-filters, .iftp-ld-per-page__custom),
+#iftp-ld-entry [hidden] {
+	display: none;
+}
+
+.iftp-ld-filters[hidden],
+.iftp-ld-per-page__custom[hidden] {
+	display: none;
+}
+
+/* ------------------------------------------------------------------ logo mark (ported from the Forminator screen) */
+
+#iftp-ld-entries .iftp-ld-empty__icon,
+#iftp-ld-entries .iftp-ld-mark {
+	forced-color-adjust: none;
+}
+
+/* Logo mark: the empty-state icon at rest, which morphs into the orbit spinner while busy and back.
+   One element, so a load that ends empty settles straight into place. */
+
+/* An AJAX action waits a beat so a fast request never flashes the loader; a click that leaves the page shows it at once. */
+.iftp-ld-entries {
+	--iftp-ld-mark-delay: 150ms;
+}
+
+.iftp-ld-entries[data-iftp-loading="nav"] {
+	--iftp-ld-mark-delay: 0ms;
+}
+
+/* Orbit: a 9px head ball on a 24px-radius circle, its tail as box-shadows at 60° steps (24·sin θ, 24 − 24·cos θ).
+   `-off` is the same ball shrunk in place, so the tail grows along the circle instead of flying across it. */
+.iftp-ld-entries .iftp-ld-mark {
+	--iftp-ld-mark-ease: cubic-bezier(0.65, 0, 0.35, 1);
+	--iftp-ld-orbit-spin: 1100ms cubic-bezier(0.55, 0.15, 0.45, 0.85);
+	--iftp-ld-orbit-d1: -20.8px 12px 0 -0.5px var(--iftp-ld-ramp-2);
+	--iftp-ld-orbit-d2: -20.8px 36px 0 -1px var(--iftp-ld-ramp-3);
+	--iftp-ld-orbit-d3: 0 48px 0 -1.5px var(--iftp-ld-ramp-4);
+	--iftp-ld-orbit-d4: 20.8px 36px 0 -2px var(--iftp-ld-ramp-5);
+	--iftp-ld-orbit-d5: 20.8px 12px 0 -2.5px var(--iftp-ld-ramp-6);
+	--iftp-ld-orbit-d1-off: -20.8px 12px 0 -4.5px var(--iftp-ld-ramp-2);
+	--iftp-ld-orbit-d2-off: -20.8px 36px 0 -4.5px var(--iftp-ld-ramp-3);
+	--iftp-ld-orbit-d3-off: 0 48px 0 -4.5px var(--iftp-ld-ramp-4);
+	--iftp-ld-orbit-d4-off: 20.8px 36px 0 -4.5px var(--iftp-ld-ramp-5);
+	--iftp-ld-orbit-d5-off: 20.8px 12px 0 -4.5px var(--iftp-ld-ramp-6);
+
+	position: relative;
+	display: block;
+	width: 56px;
+	height: 56px;
+}
+
+.iftp-ld-entries .iftp-ld-mark__disc {
+	position: absolute;
+	inset: 0;
+	display: grid;
+	place-items: center;
+	border-radius: 50%;
+	background: var(--iftp-ld-band);
+	box-shadow: var(--iftp-ld-shadow-1);
+}
+
+/* Padded out to the disc's size, so the reveal's clip box and the bar share one box. */
+.iftp-ld-entries .iftp-ld-mark__logo {
+	display: block;
+	box-sizing: content-box;
+	width: 28px;
+	height: 28px;
+	padding: 14px;
+}
+
+/* The 45° light bar. At 75% → 25% it rides the reveal's edge exactly; at rest it's parked off the disc. */
+.iftp-ld-entries .iftp-ld-mark__disc::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	border-radius: 50%;
+	background: linear-gradient(135deg, transparent 44%, rgb(255 255 255 / 55%) 50%, transparent 56%) 100% 100% / 300% 300% no-repeat;
+	pointer-events: none;
+}
+
+.iftp-ld-entries .iftp-ld-mark__orbit {
+	position: absolute;
+	top: calc(50% - 28.5px);
+	left: calc(50% - 4.5px);
+	width: 9px;
+	height: 9px;
+	border-radius: 50%;
+	background: var(--iftp-ld-ramp-1);
+	box-shadow: var(--iftp-ld-orbit-d1), var(--iftp-ld-orbit-d2), var(--iftp-ld-orbit-d3), var(--iftp-ld-orbit-d4), var(--iftp-ld-orbit-d5);
+	transform-origin: 50% 28.5px; /* the mark's centre */
+	opacity: 0;
+	pointer-events: none;
+}
+
+/* The disc fades in on first paint; once the page is ready, the bar descends at 45° and reveals the logo behind it. */
+.iftp-ld-entries .iftp-ld-empty__icon .iftp-ld-mark__disc {
+	animation: iftp-ld-mark-in 240ms var(--iftp-ld-ease-out) backwards;
+}
+
+.iftp-ld-entries .iftp-ld-empty__icon:not(.iftp-ld-page-loading *) .iftp-ld-mark__logo {
+	animation: iftp-ld-mark-reveal 720ms var(--iftp-ld-mark-ease) 180ms backwards;
+}
+
+.iftp-ld-entries .iftp-ld-empty__icon:not([data-iftp-loading] *, .iftp-ld-page-loading *) .iftp-ld-mark__disc::before {
+	animation: iftp-ld-mark-sweep 720ms var(--iftp-ld-mark-ease) 180ms backwards;
+}
+
+/* No reveal when swapped in by AJAX (the loader already showed the logo) or once this tab has seen it (entries-restore.js). */
+.iftp-ld-entries .iftp-ld-empty__icon.iftp-ld-mark--no-entrance .iftp-ld-mark__disc,
+.iftp-ld-entries .iftp-ld-empty__icon.iftp-ld-mark--no-entrance .iftp-ld-mark__logo,
+.iftp-ld-entries .iftp-ld-empty__icon.iftp-ld-mark--no-entrance .iftp-ld-mark__disc::before,
+.iftp-ld-intro-seen .iftp-ld-entries .iftp-ld-empty__icon .iftp-ld-mark__disc,
+.iftp-ld-intro-seen .iftp-ld-entries .iftp-ld-empty__icon .iftp-ld-mark__logo,
+.iftp-ld-intro-seen .iftp-ld-entries .iftp-ld-empty__icon .iftp-ld-mark__disc::before {
+	animation: none;
+}
+
+/* Busy. The static values are the spinner itself (all reduced motion gets); the animations morph the disc
+   into it. `.iftp-ld-page-loading` is the page itself still arriving. */
+.iftp-ld-entries .iftp-ld-mark--busy .iftp-ld-mark__disc,
+.iftp-ld-entries[data-iftp-loading] .iftp-ld-mark .iftp-ld-mark__disc,
+.iftp-ld-page-loading .iftp-ld-entries .iftp-ld-empty__icon .iftp-ld-mark__disc {
+	opacity: 0;
+	scale: 0.16;
+	translate: 0 -24px;
+	animation:
+		iftp-ld-mark-shrink 420ms var(--iftp-ld-mark-ease) var(--iftp-ld-mark-delay) backwards,
+		iftp-ld-mark-rise 380ms var(--iftp-ld-mark-ease) calc(var(--iftp-ld-mark-delay) + 200ms) backwards,
+		iftp-ld-mark-hide 1ms calc(var(--iftp-ld-mark-delay) + 580ms) backwards;
+}
+
+.iftp-ld-entries .iftp-ld-mark--busy .iftp-ld-mark__logo,
+.iftp-ld-entries[data-iftp-loading] .iftp-ld-mark .iftp-ld-mark__logo,
+.iftp-ld-page-loading .iftp-ld-entries .iftp-ld-empty__icon .iftp-ld-mark__logo {
+	opacity: 0;
+	animation: iftp-ld-mark-logo-out 180ms var(--iftp-ld-ease) var(--iftp-ld-mark-delay) backwards;
+}
+
+.iftp-ld-entries .iftp-ld-mark--busy .iftp-ld-mark__orbit,
+.iftp-ld-entries[data-iftp-loading] .iftp-ld-mark .iftp-ld-mark__orbit,
+.iftp-ld-page-loading .iftp-ld-entries .iftp-ld-empty__icon .iftp-ld-mark__orbit {
+	opacity: 1;
+	animation:
+		iftp-ld-orbit-show 1ms calc(var(--iftp-ld-mark-delay) + 580ms) backwards,
+		iftp-ld-orbit-lay 900ms linear calc(var(--iftp-ld-mark-delay) + 580ms) backwards,
+		iftp-ld-orbit-spin var(--iftp-ld-orbit-spin) calc(var(--iftp-ld-mark-delay) + 580ms) infinite;
+}
+
+/* Already a spinner: the overlay loader, a mark swapped in mid-load, or the next page after a click (entries-restore.js). */
+.iftp-ld-entries .iftp-ld-mark--busy .iftp-ld-mark__disc,
+.iftp-ld-entries .iftp-ld-mark--busy .iftp-ld-mark__logo,
+.iftp-ld-entries[data-iftp-loading] .iftp-ld-mark--no-entrance .iftp-ld-mark__disc,
+.iftp-ld-entries[data-iftp-loading] .iftp-ld-mark--no-entrance .iftp-ld-mark__logo,
+.iftp-ld-page-loading.iftp-ld-page-continue .iftp-ld-entries .iftp-ld-empty__icon .iftp-ld-mark__disc,
+.iftp-ld-page-loading.iftp-ld-page-continue .iftp-ld-entries .iftp-ld-empty__icon .iftp-ld-mark__logo {
+	animation: none;
+}
+
+.iftp-ld-entries .iftp-ld-mark--busy .iftp-ld-mark__orbit,
+.iftp-ld-entries[data-iftp-loading] .iftp-ld-mark--no-entrance .iftp-ld-mark__orbit,
+.iftp-ld-page-loading.iftp-ld-page-continue .iftp-ld-entries .iftp-ld-empty__icon .iftp-ld-mark__orbit {
+	animation: iftp-ld-orbit-spin var(--iftp-ld-orbit-spin) infinite;
+}
+
+/* Spinner → logo. Loading only clears once the orbit eases to rest at the top, so the tail reels in, the head
+   drops into the disc and the logo returns. `[data-iftp-settle="none"]` marks a load too quick to have spun. */
+.iftp-ld-page-ready .iftp-ld-entries .iftp-ld-empty__icon:not([data-iftp-loading] *, [data-iftp-settle="none"] *) .iftp-ld-mark__orbit,
+.iftp-ld-entries .iftp-ld-mark--no-entrance:not([data-iftp-loading] *, [data-iftp-settle="none"] *) .iftp-ld-mark__orbit {
+	animation: iftp-ld-orbit-reel 420ms var(--iftp-ld-mark-ease) backwards;
+}
+
+.iftp-ld-page-ready .iftp-ld-entries .iftp-ld-empty__icon:not([data-iftp-loading] *, [data-iftp-settle="none"] *) .iftp-ld-mark__disc,
+.iftp-ld-entries .iftp-ld-mark--no-entrance:not([data-iftp-loading] *, [data-iftp-settle="none"] *) .iftp-ld-mark__disc {
+	animation:
+		iftp-ld-mark-show 1ms 420ms backwards,
+		iftp-ld-mark-drop 400ms var(--iftp-ld-mark-ease) 420ms backwards,
+		iftp-ld-mark-grow 520ms cubic-bezier(0.34, 1.4, 0.64, 1) 600ms backwards;
+}
+
+.iftp-ld-page-ready .iftp-ld-entries .iftp-ld-empty__icon:not([data-iftp-loading] *, [data-iftp-settle="none"] *) .iftp-ld-mark__logo,
+.iftp-ld-entries .iftp-ld-mark--no-entrance:not([data-iftp-loading] *, [data-iftp-settle="none"] *) .iftp-ld-mark__logo {
+	animation: iftp-ld-mark-logo-in 280ms var(--iftp-ld-ease) 900ms backwards;
+}
+
+/* First visit in the tab: the logo comes back with the 45° reveal instead. */
+.iftp-ld-page-ready:not(.iftp-ld-intro-seen) .iftp-ld-entries .iftp-ld-empty__icon:not([data-iftp-loading] *, [data-iftp-settle="none"] *) .iftp-ld-mark__logo {
+	animation: iftp-ld-mark-reveal 720ms var(--iftp-ld-mark-ease) 960ms backwards;
+}
+
+.iftp-ld-page-ready:not(.iftp-ld-intro-seen) .iftp-ld-entries .iftp-ld-empty__icon:not([data-iftp-loading] *, [data-iftp-settle="none"] *) .iftp-ld-mark__disc::before {
+	animation: iftp-ld-mark-sweep 720ms var(--iftp-ld-mark-ease) 960ms backwards;
+}
+
+@keyframes iftp-ld-mark-in {
+	from {
+		opacity: 0;
+		scale: 0.92;
+	}
+}
+
+/* The visible area's lower edge is a 45° line sliding from above the top corner to past the bottom one. */
+@keyframes iftp-ld-mark-reveal {
+	from {
+		clip-path: polygon(0 0, 100% 0, 100% -100%, 0 0);
+	}
+
+	to {
+		clip-path: polygon(0 0, 100% 0, 100% 100%, 0 200%);
+	}
+}
+
+@keyframes iftp-ld-mark-sweep {
+	from {
+		background-position: 75% 75%;
+	}
+
+	to {
+		background-position: 25% 25%;
+	}
+}
+
+@keyframes iftp-ld-mark-logo-out {
+	from {
+		opacity: 1;
+	}
+}
+
+@keyframes iftp-ld-mark-logo-in {
+	from {
+		opacity: 0;
+	}
+}
+
+/* Disc ↔ head ball. Each runs from the disc's resting value to the busy one (or back), so they can overlap. */
+@keyframes iftp-ld-mark-shrink {
+	from {
+		scale: 1;
+	}
+}
+
+@keyframes iftp-ld-mark-rise {
+	from {
+		translate: 0 0;
+	}
+}
+
+@keyframes iftp-ld-mark-hide {
+	from {
+		opacity: 1;
+	}
+}
+
+@keyframes iftp-ld-mark-show {
+	from {
+		opacity: 0;
+	}
+}
+
+/* Only moves it — iftp-ld-mark-grow's backwards fill holds the ball size until the grow takes over. */
+@keyframes iftp-ld-mark-drop {
+	from {
+		translate: 0 -24px;
+	}
+}
+
+@keyframes iftp-ld-mark-grow {
+	from {
+		scale: 0.16;
+	}
+}
+
+@keyframes iftp-ld-orbit-show {
+	from {
+		opacity: 0;
+	}
+}
+
+/* The tail grows in place behind the head, nearest ball first. */
+@keyframes iftp-ld-orbit-lay {
+	from {
+		box-shadow: var(--iftp-ld-orbit-d1-off), var(--iftp-ld-orbit-d2-off), var(--iftp-ld-orbit-d3-off), var(--iftp-ld-orbit-d4-off), var(--iftp-ld-orbit-d5-off);
+	}
+
+	20% {
+		box-shadow: var(--iftp-ld-orbit-d1), var(--iftp-ld-orbit-d2-off), var(--iftp-ld-orbit-d3-off), var(--iftp-ld-orbit-d4-off), var(--iftp-ld-orbit-d5-off);
+	}
+
+	40% {
+		box-shadow: var(--iftp-ld-orbit-d1), var(--iftp-ld-orbit-d2), var(--iftp-ld-orbit-d3-off), var(--iftp-ld-orbit-d4-off), var(--iftp-ld-orbit-d5-off);
+	}
+
+	60% {
+		box-shadow: var(--iftp-ld-orbit-d1), var(--iftp-ld-orbit-d2), var(--iftp-ld-orbit-d3), var(--iftp-ld-orbit-d4-off), var(--iftp-ld-orbit-d5-off);
+	}
+
+	80% {
+		box-shadow: var(--iftp-ld-orbit-d1), var(--iftp-ld-orbit-d2), var(--iftp-ld-orbit-d3), var(--iftp-ld-orbit-d4), var(--iftp-ld-orbit-d5-off);
+	}
+}
+
+@keyframes iftp-ld-orbit-spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+/* The reverse: the tail shrinks away from its far end back to the head. */
+@keyframes iftp-ld-orbit-reel {
+	from {
+		opacity: 1;
+	}
+
+	20% {
+		box-shadow: var(--iftp-ld-orbit-d1), var(--iftp-ld-orbit-d2), var(--iftp-ld-orbit-d3), var(--iftp-ld-orbit-d4), var(--iftp-ld-orbit-d5-off);
+	}
+
+	40% {
+		box-shadow: var(--iftp-ld-orbit-d1), var(--iftp-ld-orbit-d2), var(--iftp-ld-orbit-d3), var(--iftp-ld-orbit-d4-off), var(--iftp-ld-orbit-d5-off);
+	}
+
+	60% {
+		box-shadow: var(--iftp-ld-orbit-d1), var(--iftp-ld-orbit-d2), var(--iftp-ld-orbit-d3-off), var(--iftp-ld-orbit-d4-off), var(--iftp-ld-orbit-d5-off);
+	}
+
+	80% {
+		box-shadow: var(--iftp-ld-orbit-d1), var(--iftp-ld-orbit-d2-off), var(--iftp-ld-orbit-d3-off), var(--iftp-ld-orbit-d4-off), var(--iftp-ld-orbit-d5-off);
+	}
+
+	to {
+		opacity: 1;
+		box-shadow: var(--iftp-ld-orbit-d1-off), var(--iftp-ld-orbit-d2-off), var(--iftp-ld-orbit-d3-off), var(--iftp-ld-orbit-d4-off), var(--iftp-ld-orbit-d5-off);
+	}
+}

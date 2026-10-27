@@ -1,0 +1,17 @@
+/**
+ * ifthenpay rows under LearnDash's Payment table on the order edit screen.
+ *
+ * LearnDash's own .ld-order-details__table rules style the text, links and copy
+ * buttons; this only closes the gap so our rows read as one list with LearnDash's.
+ */
+/* stylelint-disable selector-class-pattern -- LearnDash's own classes. */
+.ld-order-details__table > .iftp-ld-order-payment {
+	margin-top: calc(0.1875rem - 0.75rem);
+}
+
+.iftp-ld-order-payment .iftp-ld-order-payment__logo {
+	height: auto;
+	margin: 0 4px 0 2px;
+	max-width: 15px;
+	vertical-align: middle;
+}

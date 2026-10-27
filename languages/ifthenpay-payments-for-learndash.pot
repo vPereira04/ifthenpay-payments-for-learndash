@@ -1,0 +1,1770 @@
+# Copyright (C) 2026 ifthenpay
+# This file is distributed under the GPLv2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: ifthenpay | Payments for LearnDash 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/ifthenpay-payments-for-learndash\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-10-27T10:01:02+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: ifthenpay-payments-for-learndash\n"
+
+#. Plugin Name of the plugin
+#: ifthenpay-payments-for-learndash.php
+msgid "ifthenpay | Payments for LearnDash"
+msgstr ""
+
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+#: ifthenpay-payments-for-learndash.php
+msgid "https://ifthenpay.com/"
+msgstr ""
+
+#. Description of the plugin
+#: ifthenpay-payments-for-learndash.php
+msgid "ifthenpay Pay by Link for LearnDash: students pay for courses and groups on ifthenpay's hosted page with Multibanco, MB WAY, cards, Apple Pay, Google Pay and more."
+msgstr ""
+
+#. Author of the plugin
+#: ifthenpay-payments-for-learndash.php
+#: src/Admin/PaymentsSection.php:44
+#: src/Gateway/IfthenpayGateway.php:237
+msgid "ifthenpay"
+msgstr ""
+
+#: ifthenpay-payments-for-learndash.php:36
+msgid "ifthenpay | Payments for LearnDash is missing its vendor/autoload.php file. Run \"composer install\" in the plugin folder, or reinstall the plugin."
+msgstr ""
+
+#: ifthenpay-payments-for-learndash.php:75
+msgid "ifthenpay | Payments for LearnDash needs LearnDash LMS to be installed and active."
+msgstr ""
+
+#: src/Admin/AdminMenu.php:83
+#: src/Admin/EntriesPage.php:390
+#: src/Admin/EntryPage.php:132
+msgid "Payments"
+msgstr ""
+
+#: src/Admin/AdminMenu.php:170
+msgid "Customer Payments"
+msgstr ""
+
+#: src/Admin/AdminMenu.php:191
+#: src/Admin/EntriesPage.php:311
+#: src/Admin/EntriesPage.php:693
+msgid "New payment"
+msgstr ""
+
+#: src/Admin/AdminMenu.php:195
+#: src/Admin/EntriesPage.php:338
+#: src/Admin/PaymentEmailSettings.php:89
+msgid "Payment email"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:164
+msgid "That payment doesn’t exist anymore."
+msgstr ""
+
+#: src/Admin/EntriesPage.php:244
+msgid "Payment deleted"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:261
+#: src/Admin/EntriesPage.php:441
+#: src/Admin/EntriesPage.php:534
+#: src/Admin/SettingsScreen.php:126
+msgid "Cancel"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:262
+#: src/Admin/SettingsScreen.php:127
+msgid "OK"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:263
+#: src/Admin/EntriesPage.php:923
+#: src/Admin/PaymentsSection.php:353
+msgid "Copied"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:264
+msgid "Link copied"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:265
+msgid "Couldn’t copy. Select the text and copy it yourself."
+msgstr ""
+
+#: src/Admin/EntriesPage.php:266
+#: src/Admin/EntriesPage.php:867
+msgid "View"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:267
+msgid "Hide"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:268
+msgid "We couldn’t load this payment."
+msgstr ""
+
+#: src/Admin/EntriesPage.php:269
+#: src/Admin/MethodsTable.php:64
+#: src/Frontend/StatusBlock.php:317
+msgid "Try again"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:270
+msgid "Delete this payment?"
+msgstr ""
+
+#. translators: %s: payment reference.
+#: src/Admin/EntriesPage.php:272
+#, php-format
+msgid "This removes %s from Payments. ifthenpay keeps its own record."
+msgstr ""
+
+#. translators: %s: number of payments.
+#: src/Admin/EntriesPage.php:274
+#, php-format
+msgid "Delete %s payments?"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:275
+msgid "This removes them from Payments. ifthenpay keeps its own record."
+msgstr ""
+
+#. translators: %s: number of paid payments in the selection.
+#: src/Admin/EntriesPage.php:277
+#, php-format
+msgid "%s paid payments stay. Paid payments can’t be deleted."
+msgstr ""
+
+#: src/Admin/EntriesPage.php:278
+#: src/Admin/EntriesPage.php:438
+#: src/Admin/EntriesPage.php:871
+msgid "Delete"
+msgstr ""
+
+#. translators: %s: payment reference.
+#: src/Admin/EntriesPage.php:280
+#, php-format
+msgid "Mark %s as paid?"
+msgstr ""
+
+#. translators: 1: student name, 2: course or group title.
+#: src/Admin/EntriesPage.php:282
+#, php-format
+msgid "This enrols %1$s in %2$s and creates a LearnDash order, which sends LearnDash’s invoice and purchase emails. Only do this if the student really paid."
+msgstr ""
+
+#: src/Admin/EntriesPage.php:283
+msgid "This is an ad hoc payment, so nobody is enrolled and no LearnDash order is created."
+msgstr ""
+
+#. translators: %s: number of payments.
+#: src/Admin/EntriesPage.php:285
+#, php-format
+msgid "Mark %s payments as paid?"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:286
+msgid "Each checkout payment enrols its student and creates a LearnDash order, which sends LearnDash’s invoice and purchase emails. Ad hoc payments are only marked. Only do this if they really paid."
+msgstr ""
+
+#. translators: 1: number of payments, 2: status label.
+#: src/Admin/EntriesPage.php:288
+#, php-format
+msgid "Mark %1$s payments as %2$s?"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:289
+msgid "Moving a paid payment off Paid doesn’t remove the access already given, and its LearnDash order stays."
+msgstr ""
+
+#. translators: %s: status label.
+#: src/Admin/EntriesPage.php:291
+#: src/Admin/EntriesPage.php:431
+#, php-format
+msgid "Mark as %s"
+msgstr ""
+
+#. translators: 1: payments done so far, 2: payments selected.
+#: src/Admin/EntriesPage.php:293
+#, php-format
+msgid "Updating… %1$s of %2$s"
+msgstr ""
+
+#. translators: 1: payments done so far, 2: payments selected.
+#: src/Admin/EntriesPage.php:295
+#, php-format
+msgid "Deleting… %1$s of %2$s"
+msgstr ""
+
+#. translators: %s: number of payments.
+#: src/Admin/EntriesPage.php:297
+#, php-format
+msgid "Updated %s payments"
+msgstr ""
+
+#. translators: %s: number of payments.
+#: src/Admin/EntriesPage.php:299
+#, php-format
+msgid "Deleted %s payments"
+msgstr ""
+
+#. translators: %s: number of payments.
+#: src/Admin/EntriesPage.php:301
+#, php-format
+msgid "LearnDash couldn’t record %s of them. Mark them as paid again to retry."
+msgstr ""
+
+#. translators: 1: payments done before the error, 2: payments selected.
+#: src/Admin/EntriesPage.php:303
+#, php-format
+msgid "Stopped after %1$s of %2$s. The rest are still selected."
+msgstr ""
+
+#: src/Admin/EntriesPage.php:304
+msgid "Couldn’t save. Check your connection and try again."
+msgstr ""
+
+#: src/Admin/EntriesPage.php:305
+msgid "A bulk action is still running. Leave anyway?"
+msgstr ""
+
+#. translators: 1: number of selected payments, 2: total number of payments.
+#: src/Admin/EntriesPage.php:307
+#, php-format
+msgid "%1$s selected out of %2$s"
+msgstr ""
+
+#. translators: %s: number of selected payments.
+#: src/Admin/EntriesPage.php:309
+#, php-format
+msgid "%s selected"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:310
+msgid "Select at least one payment to export."
+msgstr ""
+
+#: src/Admin/EntriesPage.php:312
+msgid "Create payment"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:313
+msgid "Creating…"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:314
+msgid "Payment recorded"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:315
+#: src/Ajax/EntriesController.php:182
+msgid "Enter an amount of at least 0,01 €."
+msgstr ""
+
+#: src/Admin/EntriesPage.php:316
+#: src/Ajax/EntriesController.php:192
+msgid "Enter a valid email, or leave it blank."
+msgstr ""
+
+#: src/Admin/EntriesPage.php:317
+msgid "Enter the student’s email to send the payment email."
+msgstr ""
+
+#: src/Admin/EntriesPage.php:318
+msgid "Send payment email?"
+msgstr ""
+
+#. translators: %s: student email address.
+#: src/Admin/EntriesPage.php:320
+#, php-format
+msgid "%s will get an email with the payment button. If the payment has no live link yet, one is created first."
+msgstr ""
+
+#: src/Admin/EntriesPage.php:321
+msgid "Send email"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:322
+msgid "Sending…"
+msgstr ""
+
+#. translators: %s: email address.
+#: src/Admin/EntriesPage.php:324
+#, php-format
+msgid "Email sent to %s"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:325
+msgid "Couldn’t send the payment email. Try again."
+msgstr ""
+
+#: src/Admin/EntriesPage.php:326
+msgid "Send payment emails?"
+msgstr ""
+
+#. translators: %s: number of selected payments.
+#: src/Admin/EntriesPage.php:328
+#, php-format
+msgid "The students of the %s selected pending payments each get an email with their payment button. Payments without a student email are skipped."
+msgstr ""
+
+#: src/Admin/EntriesPage.php:329
+msgid "Send emails"
+msgstr ""
+
+#. translators: 1: payments done so far, 2: payments selected.
+#: src/Admin/EntriesPage.php:331
+#, php-format
+msgid "Sending… %1$s of %2$s"
+msgstr ""
+
+#. translators: 1: sent, 2: skipped, 3: failed.
+#: src/Admin/EntriesPage.php:333
+#, php-format
+msgid "Sent %1$s, skipped %2$s, failed %3$s"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:334
+msgid "Couldn’t save your column choice."
+msgstr ""
+
+#. translators: 1: column name, 2: new position, 3: number of movable columns.
+#: src/Admin/EntriesPage.php:336
+#, php-format
+msgid "%1$s moved to position %2$s of %3$s"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:337
+msgid "Columns reset to the default order, all shown."
+msgstr ""
+
+#: src/Admin/EntriesPage.php:339
+msgid "Save template"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:340
+msgid "Saving…"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:341
+msgid "Couldn’t refresh the preview."
+msgstr ""
+
+#: src/Admin/EntriesPage.php:342
+msgid "Default template restored. Save to keep it."
+msgstr ""
+
+#: src/Admin/EntriesPage.php:343
+msgid "Discard your changes?"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:344
+msgid "The payment email has unsaved edits."
+msgstr ""
+
+#: src/Admin/EntriesPage.php:345
+msgid "Discard"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:346
+msgid "Choose an image for the email"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:347
+msgid "Insert image"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:348
+msgid "Loading"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:391
+msgid "Every ifthenpay payment attempt, paid or not. LearnDash creates an order only when a payment is paid."
+msgstr ""
+
+#: src/Admin/EntriesPage.php:397
+msgid "Totals by status"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:403
+msgid "Filter by status"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:426
+msgid "Bulk action"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:428
+msgid "Bulk actions"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:434
+#: src/Admin/EntriesPage.php:1053
+#: src/Admin/EntryPage.php:250
+msgid "Send payment email"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:435
+msgid "Export selected as CSV"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:436
+msgid "Export selected as JSON"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:440
+#: src/Admin/EntryPage.php:259
+msgid "Apply"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:447
+msgid "Search payments"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:448
+msgid "Search reference, student or email"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:448
+msgid "Search by reference, student, email, method, request ID or order number"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:453
+msgid "Filters"
+msgstr ""
+
+#. translators: %s: number of active filters.
+#: src/Admin/EntriesPage.php:457
+#, php-format
+msgid "(%s active)"
+msgid_plural "(%s active)"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/Admin/EntriesPage.php:464
+msgid "Columns"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:473
+#: src/Admin/EntriesPage.php:476
+msgid "Export"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:477
+msgid "Export view as CSV"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:478
+msgid "Export view as JSON"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:489
+msgid "Active filters"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:493
+msgid "Remove filter:"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:501
+#: src/Admin/EntriesPage.php:673
+#: src/Admin/EntriesPage.php:808
+msgid "Clear filters"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:510
+msgid "Select all on this page"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:511
+#: src/Admin/EntriesPage.php:752
+#: src/Admin/EntriesPage.php:1278
+#: src/Admin/EntryPage.php:314
+#: src/Mail/PaymentEmailTemplate.php:110
+msgid "Reference"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:541
+msgid "Payments per page"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:546
+msgid "Custom…"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:549
+msgid "Custom payments per page"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:552
+msgid "Go"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:563
+msgid "Back to top"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:577
+msgid "How to start taking ifthenpay payments"
+msgstr ""
+
+#. translators: %s: link to the ifthenpay settings.
+#: src/Admin/EntriesPage.php:583
+#, php-format
+msgid "Connect your account in %s."
+msgstr ""
+
+#: src/Admin/EntriesPage.php:584
+msgid "Settings › Payments › ifthenpay"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:588
+msgid "Turn on the payment methods you want to offer and pick a default."
+msgstr ""
+
+#: src/Admin/EntriesPage.php:589
+msgid "Set a course or group’s access mode to Buy now."
+msgstr ""
+
+#: src/Admin/EntriesPage.php:590
+msgid "Payment attempts show up here as students pay."
+msgstr ""
+
+#: src/Admin/EntriesPage.php:613
+#: src/Admin/EntriesPage.php:708
+#: src/Admin/EntriesPage.php:1279
+#: src/Admin/EntryPage.php:439
+msgid "Course or group"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:615
+msgid "All courses and groups"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:621
+#: src/Admin/EntriesPage.php:1284
+#: src/Admin/EntriesPage.php:1559
+#: src/Admin/EntryPage.php:150
+#: src/Admin/MethodsTable.php:39
+msgid "Method"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:623
+msgid "All methods"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:631
+#: src/Admin/EntriesPage.php:715
+#: src/Admin/EntriesPage.php:1285
+#: src/Admin/EntriesPage.php:1560
+msgid "Amount"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:633
+#: src/Admin/EntriesPage.php:634
+msgid "From"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:636
+#: src/Admin/EntriesPage.php:637
+msgid "To"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:642
+#: src/Admin/EntriesPage.php:1288
+#: src/Admin/EntriesPage.php:1563
+#: src/Admin/EntryPage.php:167
+#: src/Admin/EntryPage.php:206
+msgid "Created"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:644
+msgid "From date"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:647
+msgid "To date"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:650
+msgid "Quick date ranges"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:671
+msgid "Apply filters"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:695
+msgid "Record a payment taken outside checkout. It’s filed as ad hoc: nobody is enrolled and no LearnDash order is created."
+msgstr ""
+
+#: src/Admin/EntriesPage.php:699
+#: src/Admin/EntriesPage.php:1281
+#: src/Mail/PaymentEmailTemplate.php:47
+msgid "Student name"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:703
+#: src/Admin/EntriesPage.php:1282
+msgid "Student email"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:710
+msgid "None"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:720
+#: src/Admin/EntriesPage.php:1286
+#: src/Admin/EntriesPage.php:1561
+#: src/Admin/MethodsTable.php:41
+msgid "Status"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:728
+msgid "Send the payment email now"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:749
+msgid "Choose and order columns"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:753
+msgid "Always shown"
+msgstr ""
+
+#. translators: %s: column name.
+#: src/Admin/EntriesPage.php:765
+#, php-format
+msgid "Move %s up"
+msgstr ""
+
+#. translators: %s: column name.
+#: src/Admin/EntriesPage.php:767
+#, php-format
+msgid "Move %s down"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:771
+msgid "Reset columns"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:806
+msgid "No payments match these filters"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:807
+msgid "Try other filters, or clear them to see everything."
+msgstr ""
+
+#: src/Admin/EntriesPage.php:810
+msgid "No payments yet"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:811
+msgid "When students pay with ifthenpay, every attempt shows up here."
+msgstr ""
+
+#. translators: %s: payment reference.
+#: src/Admin/EntriesPage.php:859
+#, php-format
+msgid "Select %s"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:864
+#: src/Admin/EntryPage.php:317
+#: src/Admin/OrderScreen.php:84
+msgid "Copy reference"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:894
+#: src/Admin/EntryPage.php:247
+#: src/Admin/EntryPage.php:349
+msgid "Copy link"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:899
+msgid "No link"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:900
+msgid "No payment link yet. Sending the payment email creates one."
+msgstr ""
+
+#: src/Admin/EntriesPage.php:902
+msgid "Link expired"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:903
+msgid "This link can no longer be paid."
+msgstr ""
+
+#: src/Admin/EntriesPage.php:1055
+msgid "Open full page"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:1137
+msgid "Failed or cancelled"
+msgstr ""
+
+#. translators: %s: number of payments.
+#: src/Admin/EntriesPage.php:1140
+#, php-format
+msgid "%s payment"
+msgid_plural "%s payments"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/Admin/EntriesPage.php:1142
+msgid "Selected. Activate to show all payments."
+msgstr ""
+
+#: src/Admin/EntriesPage.php:1169
+msgid "Pagination"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:1171
+msgid "Previous page"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:1193
+msgid "Next page"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:1210
+msgid "Go to page"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:1224
+#: src/Admin/PaymentEmailSettings.php:288
+#: src/Ajax/EntriesController.php:386
+msgid "You are not allowed to do this."
+msgstr ""
+
+#: src/Admin/EntriesPage.php:1280
+msgid "Type"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:1283
+msgid "User ID"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:1287
+#: src/Admin/EntryPage.php:449
+msgid "LearnDash order"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:1289
+#: src/Admin/EntryPage.php:456
+msgid "Last updated"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:1290
+#: src/Admin/EntryPage.php:356
+msgid "Expires"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:1291
+#: src/Admin/EntryPage.php:322
+msgid "Request ID"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:1292
+#: src/Admin/EntryPage.php:323
+msgid "Transaction ID"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:1293
+#: src/Admin/EntryPage.php:341
+msgid "Payment link"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:1382
+#: src/Admin/EntryCells.php:237
+#: src/Admin/EntryPage.php:120
+msgid "Ad Hoc"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:1522
+msgid "Courses"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:1523
+msgid "Groups"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:1557
+#: src/Admin/EntryPage.php:151
+#: src/Admin/EntryPage.php:160
+#: src/Admin/EntryPage.php:405
+msgid "Student"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:1558
+msgid "Course/Group"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:1562
+msgid "Order"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:1636
+msgid "Today"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:1641
+msgid "Last 7 days"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:1646
+msgid "This month"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:1651
+msgid "Last month"
+msgstr ""
+
+#. translators: %s: "Course" or "Group" label.
+#: src/Admin/EntriesPage.php:1673
+#, php-format
+msgid "%s:"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:1687
+msgid "Method:"
+msgstr ""
+
+#. translators: %s: an amount.
+#: src/Admin/EntriesPage.php:1703
+#, php-format
+msgid "up to %s"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:1708
+msgid "Amount:"
+msgstr ""
+
+#. translators: %s: a date.
+#: src/Admin/EntriesPage.php:1736
+#, php-format
+msgid "until %s"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:1742
+msgid "Created:"
+msgstr ""
+
+#. translators: 1: lower bound, 2: upper bound.
+#: src/Admin/EntriesPage.php:1769
+#, php-format
+msgid "%1$s – %2$s"
+msgstr ""
+
+#. translators: %s: an amount or a date.
+#: src/Admin/EntriesPage.php:1774
+#, php-format
+msgid "from %s"
+msgstr ""
+
+#. translators: 1: first payment shown, 2: last payment shown, 3: total payments.
+#: src/Admin/EntriesPage.php:1795
+#, php-format
+msgid "%1$s–%2$s of %3$s"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:2095
+msgid "All"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:2096
+#: src/Admin/EntryCells.php:87
+msgid "Pending"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:2097
+#: src/Admin/EntryCells.php:88
+msgid "Paid"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:2098
+#: src/Admin/EntryCells.php:89
+msgid "Failed"
+msgstr ""
+
+#: src/Admin/EntriesPage.php:2099
+#: src/Admin/EntryCells.php:91
+msgid "Expired"
+msgstr ""
+
+#: src/Admin/EntryCells.php:90
+msgid "Cancelled"
+msgstr ""
+
+#: src/Admin/EntryCells.php:173
+msgid "No student"
+msgstr ""
+
+#: src/Admin/EntryCells.php:286
+msgid "This LearnDash order was deleted."
+msgstr ""
+
+#: src/Admin/EntryCells.php:295
+msgid "Not paid yet"
+msgstr ""
+
+#: src/Admin/EntryCells.php:295
+msgid "LearnDash creates the order once the payment is paid."
+msgstr ""
+
+#: src/Admin/EntryCells.php:300
+msgid "Not paid"
+msgstr ""
+
+#: src/Admin/EntryCells.php:305
+msgid "No order"
+msgstr ""
+
+#: src/Admin/EntryCells.php:305
+msgid "Ad hoc payments don’t enrol anyone, so LearnDash has no order for them."
+msgstr ""
+
+#: src/Admin/EntryCells.php:309
+msgid "Not recorded"
+msgstr ""
+
+#: src/Admin/EntryCells.php:309
+msgid "LearnDash didn’t record this order. Mark the payment as paid again to retry."
+msgstr ""
+
+#: src/Admin/EntryCells.php:322
+msgid "The student hasn’t picked a payment method yet."
+msgstr ""
+
+#: src/Admin/EntryCells.php:322
+msgid "Awaiting selection"
+msgstr ""
+
+#: src/Admin/EntryCells.php:324
+msgid "The payment expired before the student picked a payment method."
+msgstr ""
+
+#: src/Admin/EntryCells.php:324
+msgid "Expired payment"
+msgstr ""
+
+#: src/Admin/EntryCells.php:326
+msgid "No payment method"
+msgstr ""
+
+#: src/Admin/EntryCells.php:333
+#: src/Admin/EntryCells.php:359
+msgid "Ad hoc"
+msgstr ""
+
+#: src/Admin/EntryCells.php:375
+#: src/Admin/EntryCells.php:404
+msgid "No date"
+msgstr ""
+
+#. translators: %s: time since, e.g. "2 hours".
+#: src/Admin/EntryCells.php:383
+#, php-format
+msgid "%s ago"
+msgstr ""
+
+#. translators: compact date and time format for the payments table, see https://www.php.net/manual/datetime.format.php
+#: src/Admin/EntryCells.php:433
+msgctxt "entries date"
+msgid "d/m/Y H:i"
+msgstr ""
+
+#. translators: %s: payment reference.
+#: src/Admin/EntryPage.php:135
+#, php-format
+msgid "Payment %s"
+msgstr ""
+
+#. translators: %s: LearnDash order ID.
+#: src/Admin/EntryPage.php:138
+#, php-format
+msgid "Order #%s"
+msgstr ""
+
+#: src/Admin/EntryPage.php:164
+msgid "Timestamps"
+msgstr ""
+
+#: src/Admin/EntryPage.php:168
+msgid "Updated"
+msgstr ""
+
+#: src/Admin/EntryPage.php:169
+msgid "Link expires"
+msgstr ""
+
+#: src/Admin/EntryPage.php:177
+msgid "Transaction"
+msgstr ""
+
+#: src/Admin/EntryPage.php:181
+msgid "Course and LearnDash order"
+msgstr ""
+
+#: src/Admin/EntryPage.php:208
+msgid "Link generated"
+msgstr ""
+
+#: src/Admin/EntryPage.php:209
+msgid "Status updated"
+msgstr ""
+
+#: src/Admin/EntryPage.php:215
+msgid "(done)"
+msgstr ""
+
+#: src/Admin/EntryPage.php:219
+msgid "Not yet"
+msgstr ""
+
+#: src/Admin/EntryPage.php:223
+msgid "Done"
+msgstr ""
+
+#: src/Admin/EntryPage.php:243
+msgid "Actions"
+msgstr ""
+
+#: src/Admin/EntryPage.php:253
+msgid "Mark as"
+msgstr ""
+
+#: src/Admin/EntryPage.php:264
+msgid "Delete payment"
+msgstr ""
+
+#: src/Admin/EntryPage.php:311
+msgid "Payment"
+msgstr ""
+
+#: src/Admin/EntryPage.php:329
+msgid "None yet"
+msgstr ""
+
+#. translators: %s: field label, e.g. "Request ID".
+#: src/Admin/EntryPage.php:335
+#, php-format
+msgid "Copy %s"
+msgstr ""
+
+#: src/Admin/EntryPage.php:344
+msgid "No payment link"
+msgstr ""
+
+#: src/Admin/EntryPage.php:348
+msgid "Open"
+msgstr ""
+
+#: src/Admin/EntryPage.php:348
+msgid "(opens in a new tab)"
+msgstr ""
+
+#. translators: %s: coupon code.
+#: src/Admin/EntryPage.php:390
+#, php-format
+msgid "Coupon: %s"
+msgstr ""
+
+#: src/Admin/EntryPage.php:411
+msgid "No name"
+msgstr ""
+
+#: src/Admin/EntryPage.php:424
+msgid "Edit information"
+msgstr ""
+
+#. translators: %s: Gateway Key.
+#: src/Admin/MethodsTable.php:35
+#, php-format
+msgid "Methods for Gateway Key %s"
+msgstr ""
+
+#: src/Admin/MethodsTable.php:37
+msgid "Enabled"
+msgstr ""
+
+#: src/Admin/MethodsTable.php:38
+msgid "Default"
+msgstr ""
+
+#: src/Admin/MethodsTable.php:40
+msgid "Account"
+msgstr ""
+
+#: src/Admin/MethodsTable.php:45
+msgid "The star marks the default method. Only enabled methods can be the default."
+msgstr ""
+
+#: src/Admin/MethodsTable.php:58
+msgid "Choose a Gateway Key to see its payment methods."
+msgstr ""
+
+#: src/Admin/MethodsTable.php:63
+#: src/Admin/SettingsScreen.php:147
+msgid "We couldn’t load the methods for this Gateway Key. Try again in a moment."
+msgstr ""
+
+#: src/Admin/MethodsTable.php:78
+msgid "This Gateway Key has no payment methods yet. Ask ifthenpay to add some, then reload this page."
+msgstr ""
+
+#. translators: %s: payment method name.
+#: src/Admin/MethodsTable.php:110
+#, php-format
+msgid "Enable %s"
+msgstr ""
+
+#. translators: %s: payment method name.
+#: src/Admin/MethodsTable.php:119
+#, php-format
+msgid "Make %s the default method"
+msgstr ""
+
+#: src/Admin/MethodsTable.php:133
+msgid "No account"
+msgstr ""
+
+#: src/Admin/MethodsTable.php:136
+msgid "Activated"
+msgstr ""
+
+#: src/Admin/MethodsTable.php:140
+msgid "Not activated"
+msgstr ""
+
+#: src/Admin/MethodsTable.php:142
+#: src/Admin/SettingsScreen.php:137
+msgid "Requested"
+msgstr ""
+
+#: src/Admin/MethodsTable.php:142
+msgid "Request activation"
+msgstr ""
+
+#. translators: 1: payment reference, 2: copy button.
+#: src/Admin/OrderScreen.php:82
+#, php-format
+msgid "Reference: %1$s %2$s"
+msgstr ""
+
+#. translators: %s: payment method (logo and name).
+#: src/Admin/OrderScreen.php:92
+#, php-format
+msgid "Method: %s"
+msgstr ""
+
+#. translators: 1: ifthenpay request ID, 2: copy button.
+#: src/Admin/OrderScreen.php:109
+#, php-format
+msgid "Request ID: %1$s %2$s"
+msgstr ""
+
+#: src/Admin/OrderScreen.php:111
+msgid "Copy request ID"
+msgstr ""
+
+#: src/Admin/OrderScreen.php:117
+msgid "View ifthenpay entry"
+msgstr ""
+
+#: src/Admin/PaymentEmailSettings.php:91
+msgid "What students get from \"Send payment email\". Click a tag to drop a payment detail where your cursor is; it’s filled in for each student when the email goes out."
+msgstr ""
+
+#: src/Admin/PaymentEmailSettings.php:96
+msgid "Subject"
+msgstr ""
+
+#: src/Admin/PaymentEmailSettings.php:100
+msgid "Insert a tag"
+msgstr ""
+
+#: src/Admin/PaymentEmailSettings.php:106
+msgid "Hover or focus a tag to see what it becomes."
+msgstr ""
+
+#: src/Admin/PaymentEmailSettings.php:111
+msgid "Body (HTML)"
+msgstr ""
+
+#: src/Admin/PaymentEmailSettings.php:112
+msgid "Add image"
+msgstr ""
+
+#: src/Admin/PaymentEmailSettings.php:115
+msgid "Inline styles and tables work best in mail clients. Scripts, forms, embeds and event handlers are removed when you save."
+msgstr ""
+
+#: src/Admin/PaymentEmailSettings.php:116
+msgid "Reset to default"
+msgstr ""
+
+#: src/Admin/PaymentEmailSettings.php:122
+msgid "Preview"
+msgstr ""
+
+#: src/Admin/PaymentEmailSettings.php:123
+msgid "With sample data"
+msgstr ""
+
+#: src/Admin/PaymentEmailSettings.php:126
+msgid "Subject:"
+msgstr ""
+
+#: src/Admin/PaymentEmailSettings.php:128
+msgid "Email preview"
+msgstr ""
+
+#: src/Admin/PaymentEmailSettings.php:150
+msgid "Enter a subject."
+msgstr ""
+
+#: src/Admin/PaymentEmailSettings.php:154
+msgid "The email body is empty."
+msgstr ""
+
+#. translators: %s: the {payment_url} tag.
+#: src/Admin/PaymentEmailSettings.php:161
+#, php-format
+msgid "Add the %s tag to the body (as a button’s link, for example), or the student has no way to pay."
+msgstr ""
+
+#: src/Admin/PaymentEmailSettings.php:184
+msgid "Payment email saved. Some HTML that isn’t allowed in emails was removed; the editor now shows what will be sent."
+msgstr ""
+
+#: src/Admin/PaymentEmailSettings.php:185
+msgid "Payment email saved."
+msgstr ""
+
+#: src/Admin/PaymentEmailSettings.php:212
+msgid "Intro to Python"
+msgstr ""
+
+#: src/Admin/PaymentEmailSettings.php:270
+msgid "The email body is too long."
+msgstr ""
+
+#: src/Admin/PaymentsSection.php:42
+msgid "ifthenpay Settings"
+msgstr ""
+
+#: src/Admin/PaymentsSection.php:98
+msgid "Connect your ifthenpay account to take payments by Multibanco, MB WAY, card and more. You’ll need the Backoffice Key from your ifthenpay account."
+msgstr ""
+
+#: src/Admin/PaymentsSection.php:116
+msgid "Connection"
+msgstr ""
+
+#: src/Admin/PaymentsSection.php:117
+msgid "Connected"
+msgstr ""
+
+#: src/Admin/PaymentsSection.php:124
+msgid "Active"
+msgstr ""
+
+#: src/Admin/PaymentsSection.php:216
+msgid "Disconnect ifthenpay"
+msgstr ""
+
+#: src/Admin/PaymentsSection.php:220
+#: src/Admin/SettingsScreen.php:163
+msgid "Connect ifthenpay"
+msgstr ""
+
+#: src/Admin/PaymentsSection.php:221
+msgid "Turn on JavaScript to connect ifthenpay."
+msgstr ""
+
+#: src/Admin/PaymentsSection.php:248
+msgid "Choose a Gateway Key"
+msgstr ""
+
+#: src/Admin/PaymentsSection.php:352
+msgid "Copy callback URL"
+msgstr ""
+
+#: src/Admin/PaymentsSection.php:388
+msgid "Gateway Key"
+msgstr ""
+
+#: src/Admin/PaymentsSection.php:389
+msgid "The Gateway Key that receives these payments. Changing it reloads the methods below."
+msgstr ""
+
+#: src/Admin/PaymentsSection.php:397
+#: src/Frontend/Logos.php:60
+msgid "Payment methods"
+msgstr ""
+
+#: src/Admin/PaymentsSection.php:398
+msgid "Turn on the methods students can use. The star marks the one ifthenpay’s page opens with."
+msgstr ""
+
+#: src/Admin/PaymentsSection.php:408
+msgid "Payment page description"
+msgstr ""
+
+#: src/Admin/PaymentsSection.php:409
+msgid "Shown to the student on ifthenpay’s payment page."
+msgstr ""
+
+#: src/Admin/PaymentsSection.php:418
+msgid "Link expires after"
+msgstr ""
+
+#: src/Admin/PaymentsSection.php:419
+msgid "Unpaid links expire after this many days. Multibanco references stay payable until then."
+msgstr ""
+
+#: src/Admin/PaymentsSection.php:421
+msgid "days"
+msgstr ""
+
+#: src/Admin/PaymentsSection.php:433
+msgid "Checkout message"
+msgstr ""
+
+#: src/Admin/PaymentsSection.php:434
+msgid "Shown under the ifthenpay option on the registration page. Leave it empty for the default message."
+msgstr ""
+
+#: src/Admin/PaymentsSection.php:443
+msgid "Callback URL"
+msgstr ""
+
+#: src/Admin/PaymentsSection.php:444
+msgid "ifthenpay calls this URL when a payment is paid. It’s registered for you when you connect and each time you save."
+msgstr ""
+
+#: src/Admin/PaymentsSection.php:452
+msgid "Registered with ifthenpay"
+msgstr ""
+
+#: src/Admin/PaymentsSection.php:453
+msgid "Not registered yet. Save your settings to register it."
+msgstr ""
+
+#: src/Admin/PaymentsSection.php:470
+msgid "ifthenpay only takes payments in euro, and LearnDash has no currency set yet. Set it to Euro (EUR) under Settings › Payments, then come back here."
+msgstr ""
+
+#. translators: %s: currency code, e.g. USD.
+#: src/Admin/PaymentsSection.php:475
+#, php-format
+msgid "ifthenpay only takes payments in euro, and your LearnDash currency is %s. Change it to Euro (EUR) under Settings › Payments, then come back here."
+msgstr ""
+
+#: src/Admin/PaymentsSection.php:483
+msgid "ifthenpay is on but not connected, so students won’t see it. Connect your account below."
+msgstr ""
+
+#: src/Admin/PaymentsSection.php:487
+msgid "ifthenpay is on but no Gateway Key is saved, so students won’t see it. Choose a Gateway Key below and save."
+msgstr ""
+
+#: src/Admin/PaymentsSection.php:491
+msgid "ifthenpay is on but no payment method is enabled, so students won’t see it. Turn on at least one method below and save."
+msgstr ""
+
+#: src/Admin/PaymentsSection.php:495
+msgid "Pick a default method: click the star next to the method ifthenpay’s page should open with."
+msgstr ""
+
+#: src/Admin/SettingsScreen.php:128
+msgid "Connect"
+msgstr ""
+
+#: src/Admin/SettingsScreen.php:129
+msgid "Connecting…"
+msgstr ""
+
+#: src/Admin/SettingsScreen.php:130
+msgid "Disconnect"
+msgstr ""
+
+#: src/Admin/SettingsScreen.php:131
+#: src/Admin/SettingsScreen.php:172
+msgid "Disconnect ifthenpay?"
+msgstr ""
+
+#: src/Admin/SettingsScreen.php:132
+#: src/Ajax/SettingsController.php:85
+msgid "Enter your Backoffice Key."
+msgstr ""
+
+#: src/Admin/SettingsScreen.php:133
+#: src/Ajax/SettingsController.php:95
+msgid "We couldn’t reach ifthenpay. Check your connection and try again."
+msgstr ""
+
+#: src/Admin/SettingsScreen.php:134
+msgid "Unsaved changes"
+msgstr ""
+
+#: src/Admin/SettingsScreen.php:135
+msgid "Save your settings before connecting ifthenpay."
+msgstr ""
+
+#: src/Admin/SettingsScreen.php:136
+msgid "Requesting…"
+msgstr ""
+
+#: src/Admin/SettingsScreen.php:138
+msgid "Activation requested"
+msgstr ""
+
+#. translators: %s: payment method name.
+#: src/Admin/SettingsScreen.php:140
+#, php-format
+msgid "We’ve asked ifthenpay to activate %s. You’ll get an email when it’s ready."
+msgstr ""
+
+#: src/Admin/SettingsScreen.php:141
+msgid "Request not sent"
+msgstr ""
+
+#. translators: %s: payment method name.
+#: src/Admin/SettingsScreen.php:143
+#, php-format
+msgid "Activation requested for %s"
+msgstr ""
+
+#: src/Admin/SettingsScreen.php:144
+msgid "Methods updated"
+msgstr ""
+
+#. translators: %s: payment method name.
+#: src/Admin/SettingsScreen.php:146
+#, php-format
+msgid "Default method: %s"
+msgstr ""
+
+#: src/Admin/SettingsScreen.php:165
+msgid "Paste the Backoffice Key from your ifthenpay account."
+msgstr ""
+
+#: src/Admin/SettingsScreen.php:166
+msgid "Backoffice Key"
+msgstr ""
+
+#: src/Admin/SettingsScreen.php:167
+msgid "Insert your Backoffice Key here..."
+msgstr ""
+
+#: src/Admin/SettingsScreen.php:168
+msgid "The key from your ifthenpay Backoffice account."
+msgstr ""
+
+#: src/Admin/SettingsScreen.php:173
+msgid "Students won’t be able to pay with ifthenpay until you connect again. Payments already in Payments stay there."
+msgstr ""
+
+#: src/Admin/SettingsScreen.php:194
+msgid "ifthenpay is connected. Pick the Gateway Key and the methods to offer, then save."
+msgstr ""
+
+#: src/Admin/SettingsScreen.php:204
+msgid "ifthenpay is disconnected. Students can’t pay with it until you connect again."
+msgstr ""
+
+#: src/Admin/SettingsScreen.php:216
+msgid "Settings saved, but ifthenpay didn’t accept the callback URL. We’ll retry within 15 minutes. If this keeps happening, contact ifthenpay support."
+msgstr ""
+
+#: src/Ajax/EntriesController.php:102
+msgid "This payment doesn’t exist anymore."
+msgstr ""
+
+#: src/Ajax/EntriesController.php:133
+#: src/Ajax/EntriesController.php:200
+msgid "Unknown status."
+msgstr ""
+
+#: src/Ajax/EntriesController.php:210
+msgid "Couldn’t save the payment. Try again."
+msgstr ""
+
+#: src/Ajax/EntriesController.php:338
+msgid "This payment is no longer pending, or has no student email."
+msgstr ""
+
+#: src/Ajax/EntriesController.php:340
+msgid "Couldn’t create a payment link. Check the ifthenpay connection, Gateway Key and methods in the settings."
+msgstr ""
+
+#: src/Ajax/EntriesController.php:342
+msgid "Couldn’t send the payment email. Check that this site can send mail."
+msgstr ""
+
+#. translators: %s: maximum payments per request.
+#: src/Ajax/EntriesController.php:368
+#, php-format
+msgid "Too many payments in one request (the limit is %s)."
+msgstr ""
+
+#: src/Ajax/SettingsController.php:89
+#: src/Ajax/SettingsController.php:99
+msgid "Invalid Backoffice Key..."
+msgstr ""
+
+#: src/Ajax/SettingsController.php:105
+msgid "Connected to ifthenpay."
+msgstr ""
+
+#: src/Ajax/SettingsController.php:118
+msgid "Disconnected from ifthenpay."
+msgstr ""
+
+#: src/Ajax/SettingsController.php:152
+msgid "Unknown payment method."
+msgstr ""
+
+#: src/Ajax/SettingsController.php:158
+msgid "You already requested this method in the last 24 hours."
+msgstr ""
+
+#: src/Ajax/SettingsController.php:177
+msgid "We couldn’t send the request. Please check this site can send email, or contact ifthenpay support."
+msgstr ""
+
+#: src/Ajax/SettingsController.php:182
+msgid "Request sent. ifthenpay will get back to you by email."
+msgstr ""
+
+#: src/Ajax/SettingsController.php:216
+msgid "You are not allowed to change these settings."
+msgstr ""
+
+#: src/Ajax/SettingsController.php:229
+msgid "That Gateway Key isn’t on this ifthenpay account."
+msgstr ""
+
+#. translators: 1: number of further methods, 2: their names.
+#: src/Frontend/Logos.php:72
+#, php-format
+msgid "And %1$d more: %2$s"
+msgstr ""
+
+#: src/Frontend/StatusBlock.php:149
+msgid "Checking your payment…"
+msgstr ""
+
+#: src/Frontend/StatusBlock.php:291
+msgid "Payment received. We’re confirming it with ifthenpay, and this page will update on its own."
+msgstr ""
+
+#. translators: %s: "course" or "group", LearnDash's own label.
+#: src/Frontend/StatusBlock.php:293
+#, php-format
+msgid "We’re waiting for your payment. If you’ve already paid, your %s unlocks as soon as ifthenpay confirms it."
+msgstr ""
+
+#: src/Frontend/StatusBlock.php:294
+msgid "Your payment didn’t go through. You can try again."
+msgstr ""
+
+#: src/Frontend/StatusBlock.php:295
+msgid "You cancelled the payment. You can try again whenever you’re ready."
+msgstr ""
+
+#: src/Frontend/StatusBlock.php:296
+msgid "This payment link has expired. Start a new payment to enrol."
+msgstr ""
+
+#: src/Frontend/StatusBlock.php:310
+msgid "Continue payment"
+msgstr ""
+
+#: src/Frontend/StatusBlock.php:353
+msgid "Refresh the page to check again."
+msgstr ""
+
+#: src/Gateway/IfthenpayGateway.php:121
+#: src/Payments/PaymentService.php:216
+#: src/Payments/PaymentService.php:255
+msgid "We couldn’t open the ifthenpay payment page. Please try again in a moment."
+msgstr ""
+
+#: src/Gateway/IfthenpayGateway.php:139
+msgid "Your session expired. Please reload the page and try again."
+msgstr ""
+
+#. translators: %s: "course" or "group", LearnDash's own label.
+#: src/Gateway/IfthenpayGateway.php:146
+#, php-format
+msgid "Log in to buy this %s."
+msgstr ""
+
+#: src/Gateway/IfthenpayGateway.php:150
+msgid "This course is no longer available."
+msgstr ""
+
+#: src/Gateway/IfthenpayGateway.php:216
+msgid "Use ifthenpay"
+msgstr ""
+
+#: src/Host.php:144
+msgid "Orders"
+msgstr ""
+
+#: src/Mail/PaymentEmailTemplate.php:46
+msgid "\"Hi Ana,\" or just \"Hi,\" when there’s no name"
+msgstr ""
+
+#: src/Mail/PaymentEmailTemplate.php:48
+msgid "Amount, e.g. 12,50 €"
+msgstr ""
+
+#: src/Mail/PaymentEmailTemplate.php:49
+msgid "Payment reference"
+msgstr ""
+
+#: src/Mail/PaymentEmailTemplate.php:50
+msgid "Payment link, for a button or link href (required)"
+msgstr ""
+
+#: src/Mail/PaymentEmailTemplate.php:51
+msgid "Course or group name"
+msgstr ""
+
+#: src/Mail/PaymentEmailTemplate.php:52
+msgid "Last day the link can be paid"
+msgstr ""
+
+#: src/Mail/PaymentEmailTemplate.php:53
+msgid "Site name"
+msgstr ""
+
+#. translators: %s: site name tag.
+#: src/Mail/PaymentEmailTemplate.php:64
+#, php-format
+msgid "Complete your payment to %s"
+msgstr ""
+
+#: src/Mail/PaymentEmailTemplate.php:76
+msgid "Open the payment link"
+msgstr ""
+
+#. translators: 1: course or group name tag, 2: site name tag.
+#: src/Mail/PaymentEmailTemplate.php:79
+#, php-format
+msgid "You started paying for %1$s on %2$s but didn’t finish. You can pick it back up in a few seconds."
+msgstr ""
+
+#. translators: %s: formatted amount tag.
+#: src/Mail/PaymentEmailTemplate.php:81
+#, php-format
+msgid "Pay %s"
+msgstr ""
+
+#. translators: %s: "Open the payment link", linked to the payment page.
+#: src/Mail/PaymentEmailTemplate.php:83
+#, php-format
+msgid "Button not working? %s"
+msgstr ""
+
+#. translators: %s: date tag.
+#: src/Mail/PaymentEmailTemplate.php:85
+#, php-format
+msgid "You can pay until %s."
+msgstr ""
+
+#: src/Mail/PaymentEmailTemplate.php:93
+msgid "Payment pending"
+msgstr ""
+
+#: src/Mail/PaymentEmailTemplate.php:96
+msgid "Finish your payment"
+msgstr ""
+
+#: src/Mail/PaymentEmailTemplate.php:101
+msgid "Total"
+msgstr ""
+
+#: src/Mail/PaymentEmailTemplate.php:124
+msgid "Secured by ifthenpay."
+msgstr ""
+
+#: src/Mail/PaymentEmailTemplate.php:129
+msgid "Already paid? You can ignore this email."
+msgstr ""
+
+#. translators: %s: student name.
+#: src/Mail/PaymentRequestEmail.php:88
+#, php-format
+msgid "Hi %s,"
+msgstr ""
+
+#: src/Mail/PaymentRequestEmail.php:89
+msgid "Hi,"
+msgstr ""
+
+#: src/Mail/PaymentRequestEmail.php:94
+msgid "your order"
+msgstr ""
+
+#: src/Payments/PaymentService.php:77
+msgid "ifthenpay is not available right now. Please choose another payment method."
+msgstr ""
+
+#: src/Payments/PaymentService.php:81
+msgid "ifthenpay can’t be used for this course’s price type."
+msgstr ""
+
+#. translators: %s: "course" or "group", LearnDash's own label.
+#: src/Payments/PaymentService.php:86
+#, php-format
+msgid "You’re already enrolled in this %s."
+msgstr ""
+
+#: src/Payments/PaymentService.php:90
+msgid "This course can’t be purchased right now."
+msgstr ""
+
+#: src/Payments/PaymentService.php:97
+msgid "There is nothing to pay for this course."
+msgstr ""
+
+#: src/Payments/PaymentService.php:104
+msgid "Your payment is being prepared. Please wait a moment and try again."
+msgstr ""
+
+#: src/Payments/PaymentService.php:134
+msgid "Connect ifthenpay and save a Gateway Key with at least one method first."
+msgstr ""
+
+#. translators: 1: opening link tag, 2: closing link tag, 3: date the payment link expires.
+#: src/Payments/PaymentService.php:159
+#, php-format
+msgid "You already have a payment in progress for this course. %1$sContinue payment%2$s (open until %3$s)."
+msgstr ""
+
+#: src/Repository/SettingsRepository.php:320
+msgid "You will be redirected to ifthenpay’s secure page to pay with Multibanco, MB WAY, card and more. Once the payment is confirmed, you get access to the group."
+msgstr ""
+
+#: src/Repository/SettingsRepository.php:323
+msgid "You will be redirected to ifthenpay’s secure page to pay with Multibanco, MB WAY, card and more. Once the payment is confirmed, you get access to the course."
+msgstr ""
